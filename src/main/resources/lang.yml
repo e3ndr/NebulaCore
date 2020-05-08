@@ -1,0 +1,116 @@
+# Nebula default configuration, see https://wiki.ess3.net/mc/ for color codes.
+# 
+# Global placeholders (can be used anywhere):
+#               player_username, player_displayname, player_name, player_chatcolor, player_chattag, player_world, player_nickname, player_ping, player_balance 
+#               online, online_s, online_isAre +  all PlaceHolderAPI placeholders (If present)
+# 
+# player_name follows this format:
+# nickname if set,
+# displayname if set,
+# then username if all else fails.
+# 
+# All global placeholders are available under PlaceholderAPI when prefixed with "nebula_" eg. %nebula_player_ping%
+# 
+# 
+# Every line is followed by a list of possible placeholders (excluding global) and more information.
+# 
+# 
+
+prefix: "[&dNebula&r] " # This gets applied to all lang keys, set to "" to disable
+
+chat-format: "%player_name% &r%player_chattag%&7> &f%player_chatcolor%%message%" # The chat message format. See handle-chat in config.yml. Senders with Nebula.chat.color will have color codes replaced.
+
+gamemode-updated: "Your gamemode was updated to &7%gamemode_lowercase%&r." # gamemode_uppercase, gamemode_lowercase
+gamemode-other: "You changed %player_username%'s gamemode to &7%gamemode_lowercase%&r." # gamemode_uppercase, gamemode_lowercase
+
+help: | # Use | to enable multline text or use \n. This does not use the global prefix.
+  Ask the server owner to fill this out!
+  
+  Thank you for using Nebula!
+
+home-set: "&2Home &a%home% &2was set." # home
+home-teleported: "Teleported you to &7%home%&r." # home
+home-delete: "&2Home &a%home% &2was deleted." # home
+home-doesnt-exist: "&4There is no home by the name of &c%home%&4." # home
+home-individual: "&7%home%" # home
+home-page: | # warps. Use | to enable multline text or use \n. This does not use the global prefix. This is seperated by general-listSeperator (See home-individual for the formatting).
+  &d&m--------&r&5Homes&d&m--------&r
+  %homes%
+  &r&d&m---------------------
+
+
+afk-kick: "&cYou were kicked for being AFK."
+
+message-receive: "&b[%player_displayname%&r&b -> me] &7%message%" # message. This does not use the global prefix.
+message-send: "&b[me -> %player_displayname%&r&b] &7%message%" # message. This does not use the global prefix.
+message-error-reply: "&4You haven't received a message from anyone."
+message-error-specify-message: "&4Specify a message to send."
+message-error-ignored: "&4You cannot send messages to &c%player_username%&4." # This is used if a player is ignored or if they do not have messaging enabled.
+
+economy-balance: "Your balance is &7%bal%&r." # bal.
+economy-balance-other: "&7%player_username%'s &rbalance is &7%bal%&r." # bal.
+economy-set: "Set &7%player_username%'s &rbalance to &7%amount%&r." # amount.
+economy-take: "Took &7%amount% &rfrom &7%player_username%'s &rbalance." # amount.
+economy-give: "Added &7%amount% &rto &7%player_username%'s &rbalance." # amount.
+economy-error-balance: "&7%player_username% &rhas insufficient funds."
+
+teleport-player: "Teleported you to &7%player_username%&r." 
+teleport-other: "Teleported &7%player_username%&r." 
+
+nick-removed: "Your nickname was reset."
+nick-set: "Your nickname was set to \"&7%nick%&r.\"" # nick
+
+ping: "Your ping is &7%player_ping%ms&r." # ping.
+ping-other: "&7%player_username%'s &rping is &7%player_ping%ms&r."
+
+realname: "The realname of &7%arg% &ris &7%player_username%&r." # arg
+
+heal-healed: "You were healed."
+heal-other: "&7%player_username%&r has been healed."
+
+feed-fed: "You were fed."
+feed-other: "&7%player_username%&r has been fed."
+
+smite-player: "&7%player_username%&r has been smitten."
+smite-other: "You have been smitten."
+
+fly-fly: "Set fly to &7%fly_lowercase%&r." # fly_uppercase, fly_lowercase
+fly-other: "&7%player_username%&r now has fly &7%fly_lowercase%&r." # fly_uppercase, fly_lowercase
+
+extinguish-extinguish: "You are no longer on fire."
+extinguish-other: "&7%player_username% is no longer on fire."
+
+warp-set: "&2Warp &a%warp% &2was added." # warp
+warp-teleported: "Warped you to &7%warp%&r." # warp
+warp-teleported-other: "Warped &7%player_username% &rto &7%warp%&r." # warp
+warp-delete: "&2Warp &a%warp% &2was deleted." # warp
+warp-exists: "&4There is already a warp by the name of &c%warp%&4." # warp
+warp-doesnt-exist: "&4There is no warp by the name of &c%warp%&4." # warp
+warp-individual: "%warp_prefix%%warp%" # warp, warp_prefix (This will be general-prefix-bad if the player does not have the permission required, otherwise general-prefix-good)
+warp-page: | # warps. Use | to enable multline text or use \n. This does not use the global prefix. This is seperated by general-listSeperator (See warp-individual for the formatting).
+  &d&m--------&r&5Warps&d&m--------&r
+  %warps%
+  &r&d&m---------------------
+
+broadcast: | # message. Use | to enable multline text or use \n. This does not use the global prefix.
+  &d&m--------&r&4BROADCAST&d&m--------&r
+  %player_username% > %message%
+  &r&d&m---------------------
+
+general-prefix-bad: "&c"
+general-prefix-good: "&a"
+general-list-seperator: "&r, "
+general-list-empty: "&7&onone"
+general-page: "(&7%page%&r/&7%page_total%)" # page, page_total
+
+error-specify-name: "&4Please specify a name."
+error-specify-permission: "&4Please specify a permission."
+error-specify-argument: "&4Please specify an argument."
+error-specify-amount: "&4Please specify an amount."
+error-argument: "&4Invalid argument \"&c%arg%&4.\"" # arg
+error-perm: "&4You don't have the permission &c%perm% &4that is required to do this." # perm
+error-player-offline: "&4That player is not online!" # Doesn't include global placeholders. player_username and player_displayname are present.
+error-never-played: "&4That player has never played!" # Doesn't include global placeholders. player_username and player_displayname are present.
+
+list: "There %online_isAre% &7%online% &rplayer%online_s% online." # Online = 1: "There is 1 player online"  Online = 2: "There are 2 players online."
+

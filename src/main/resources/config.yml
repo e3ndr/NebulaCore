@@ -1,0 +1,24 @@
+# Misc
+update-tablist: true # Whether or not to update the tablist with the player's nickname.
+
+# Data
+update-player-data-instantly: true # Whether or not to instantly write player data to the database when it changes, not reconmended on large servers.
+
+# Eco
+handle-economy: true # Whether or not to register on Vault.
+
+# Chat
+handle-chat: true # Whether or not to listen for chat, this will automatically ignore all cancelled chat events. Recipients require Nebula.chat.receive and senders require the permission Nebula.chat.send. See chat-format in lang.yml.
+
+# Spawn
+handle-respawns: true
+spawn-on-join: false # Whether or not to send players to spawn when they join.
+spawn-at-home: true # Whether or not respawning players should be send the their default home.
+spawn-at-bed: true # Whether or not respawning players should be send the their bed location, this happens when they do not have a default home.
+
+#SQL
+sql-server:
+   uses-password: false
+   username: ""
+   password: ""
+   hostname: "jdbc:sqlite:plugins/Nebula/sqlite.db" # Default local file

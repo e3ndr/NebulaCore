@@ -1,0 +1,17 @@
+# Use materials from https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+    
+CHAINMAIL_HELMET: # Recipe for chainmail helmet
+    count: 1 # How many items are required, undefined = 1
+    
+    items: # Make sure to define the items
+        x: "IRON_BARS"
+        y: "IRON_INGOT"
+    
+    recipes: # This is a list, for implementing multiple recipes for the same item.
+     - "x x,xxx,yyy" # Draw the items using characters
+     # Using the multi-line format you can add more recipes.
+     # The ordering in shaped recipes matters, the sections (seperated by commas) 
+     # when laid out in a crafting bench will look like this:
+     # x x
+     # xxx
+     # yyy

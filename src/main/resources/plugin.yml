@@ -1,0 +1,82 @@
+name: NebulaCore
+main: xyz.e3ndr.NebulaCore.NebulaCore
+version: 3
+description: A core plugin made by e3ndr.
+author: [e3ndr]
+api-version: 1.13
+softdepend: [Vault, PlaceholderAPI]
+
+commands:
+   warp:
+      description: Takes you to a defined warp
+      aliases: [warps, setwarp, delwarp]
+   list:
+      description: Shows the player count
+      aliases: [online]
+   nick:
+      description: Sets a nickname
+      aliases: [nickname, resetnick]
+   smite:
+      description: Smites a player where they stand
+   hat:
+      description: Changes what is on your head
+   invsee:
+      description: Opens a view of a player's inventory
+   suicide:
+      description: Kills you
+   kill:
+      description: Kills the provided player
+   help:
+      description: Shows the configured help message
+   realname:
+      description: Reveals the username of a player
+      aliases: [username]
+   extinguish:
+      description: Makes you do not have spicy toes
+      aliases: [ext]
+   message:
+      description: Sends a player a message
+      aliases: [msg, w, whisper, tell]
+   reply:
+      description: Replies to the last message sender
+      aliases: [r]
+   heal:
+      description: Sets your health to max
+      aliases: [health]
+   feed:
+      description: Sets your food to max
+      aliases: [food]
+   fly:
+      description: Toggles flight
+   spawn:
+      description: Sends you to spawn
+   setspawn:
+      description: Sets the world's spawn
+   gamemode:
+      description: Sets your gamemode
+      aliases: [gm, mode, gmc, gms, gma, gmsp, survival, creative, adventure, spectator]
+   nebula:
+      description: Nebula
+   teleport:
+      description: Teleports you to a player
+      aliases: [tp, go]
+   broadcast:
+      description: Sends a message to everyone on the server
+      aliases: [bc, announce, tellall]
+   ping:
+      description: Tells you your latency to the server
+      aliases: [latency]
+   economy:
+      description: The main command for economy related things
+      aliases: [eco, bal, money]
+   chatcolor:
+      description: Sets your custom chat color
+   trash:
+      description: Opens an inventory that will void items
+      aliases: [trashcan, disposal, dispose, void]
+   home:
+      description: Takes you to a defined home
+      aliases: [homes, sethome, delhome]
+   clearchat:
+      description: Clears the chat
+      aliases: [cc]
