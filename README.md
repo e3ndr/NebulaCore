@@ -3,4 +3,10 @@
 \
 \
 \
-My own essentials core, fit with economy.  
+My own essentials core, fit with economy.
+See the wiki for commands, perms, and overall features.
+\
+\
+\
+\
+[Trello](https://trello.com/b/4PM4IdwX/nebulacore)
