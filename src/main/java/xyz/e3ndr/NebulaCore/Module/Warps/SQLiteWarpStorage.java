@@ -84,7 +84,7 @@ public class SQLiteWarpStorage extends AbstractWarpStorage {
 			p.setFloat(8, loc.getYaw());
 			p.setFloat(9, loc.getPitch());
 			
-			p.executeUpdate();
+			p.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -99,7 +99,7 @@ public class SQLiteWarpStorage extends AbstractWarpStorage {
 			PreparedStatement p = this.conn.prepareStatement(delete);
 			
 			p.setString(1, warp.name);
-            p.executeUpdate();
+            p.execute();
             
             Warp.removeWarp(warp);
         } catch (SQLException e) {

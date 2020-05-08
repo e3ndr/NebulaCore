@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>xyz.e3ndr</groupId>
 	<artifactId>NebulaCore</artifactId>
-	<version>1b</version>
+	<version>2b</version>
 	
 	<build>
 		<plugins>
@@ -109,13 +109,6 @@
 			<version>2.10.4</version>
 			<type>jar</type>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>xyz.e3ndr</groupId>
-			<artifactId>NebulaApi</artifactId>
-			<version>1</version>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
