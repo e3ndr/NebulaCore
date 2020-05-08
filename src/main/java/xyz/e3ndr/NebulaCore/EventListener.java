@@ -11,55 +11,55 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import xyz.e3ndr.NebulaCore.Api.AbstractPlayer;
-import xyz.e3ndr.NebulaCore.Api.NebulaSettings;
-import xyz.e3ndr.NebulaCore.Commands.CommandSpawn;
+import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaSettings;
+import xyz.e3ndr.NebulaCore.commands.CommandSpawn;
 
 public class EventListener implements Listener {
-	
-	@EventHandler
-	public void onJoin(PlayerLoginEvent e) {
-		NebulaPlayer.getPlayer(e.getPlayer());
-		
-		if (NebulaSettings.spawnOnJoin) {
-			e.getPlayer().teleport(CommandSpawn.getSpawn());
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onChat(AsyncPlayerChatEvent e) {
-		if (!e.isCancelled() && NebulaSettings.handleChat) {
-			Player player = e.getPlayer();
-			
-			if (player.hasPermission("Nebula.chat.send")) {
-				String message = player.hasPermission("Nebula.chat.color") ? ChatColor.translateAlternateColorCodes('&', e.getMessage()) : e.getMessage();
-				String send = NebulaCore.getLang("chat-format", player.getUniqueId(), false).replace("%message%", message);
-				
-				Bukkit.getConsoleSender().sendMessage(send);
-				
-				for (AbstractPlayer recipient : AbstractPlayer.getOnline()) {
-					if (recipient.player.hasPermission("Nebula.chat.recieve") && !recipient.ignoredPlayers.contains(player.getUniqueId())) {
-						recipient.sendMessage(send);
-					}
-				}
-			} else {
-				player.sendMessage(NebulaCore.getLang("error.perm").replace("%perm%", "Nebula.chat.send"));
-			}
-			
-			e.setCancelled(true);
-		}
-	}
-	
-	@EventHandler
-	public void onDeath(PlayerDeathEvent e) {
-		if (NebulaSettings.handleRespawns) {
-			e.getEntity().teleport(CommandSpawn.getSpawn());
-		}
-	}
-	
-	@EventHandler
-	public void onLeave(PlayerQuitEvent e) {
-		NebulaPlayer.getPlayer(e.getPlayer()).offline();
-	}
-	
+
+    @EventHandler
+    public void onJoin(PlayerLoginEvent e) {
+        NebulaPlayer.getPlayer(e.getPlayer());
+
+        if (NebulaSettings.spawnOnJoin) {
+            e.getPlayer().teleport(CommandSpawn.getSpawn());
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onChat(AsyncPlayerChatEvent e) {
+        if (!e.isCancelled() && NebulaSettings.handleChat) {
+            Player player = e.getPlayer();
+
+            if (player.hasPermission("Nebula.chat.send")) {
+                String message = player.hasPermission("Nebula.chat.color") ? ChatColor.translateAlternateColorCodes('&', e.getMessage()) : e.getMessage();
+                String send = NebulaCore.getLang("chat-format", player.getUniqueId(), false).replace("%message%", message);
+
+                Bukkit.getConsoleSender().sendMessage(send);
+
+                for (AbstractPlayer recipient : AbstractPlayer.getOnline()) {
+                    if (recipient.player.hasPermission("Nebula.chat.recieve") && !recipient.ignoredPlayers.contains(player.getUniqueId())) {
+                        recipient.sendMessage(send);
+                    }
+                }
+            } else {
+                player.sendMessage(NebulaCore.getLang("error.perm").replace("%perm%", "Nebula.chat.send"));
+            }
+
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent e) {
+        if (NebulaSettings.handleRespawns) {
+            e.getEntity().teleport(CommandSpawn.getSpawn());
+        }
+    }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent e) {
+        NebulaPlayer.getPlayer(e.getPlayer()).offline();
+    }
+
 }

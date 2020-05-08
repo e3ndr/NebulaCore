@@ -1,10 +1,10 @@
-package xyz.e3ndr.NebulaCore.GUI;
+package xyz.e3ndr.NebulaCore.gui;
 
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import xyz.e3ndr.NebulaCore.api.XMaterial;
+
 public class GUIDefaults {
-	public static ItemStack darkPane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
-	
-	
+    public static ItemStack darkPane = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
+
 }

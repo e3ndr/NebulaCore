@@ -1,18 +1,18 @@
-package xyz.e3ndr.NebulaCore.Modules;
+package xyz.e3ndr.NebulaCore.modules;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.Commands.CommandChatColor;
+import xyz.e3ndr.NebulaCore.commands.CommandChatColor;
 
 public class ModuleChatColor extends AbstractModule {
 
-	public ModuleChatColor() {
-		super("chatcolor");
-	}
+    public ModuleChatColor() {
+        super("chatcolor");
+    }
 
-	@Override
-	protected void init(NebulaCore instance) {
-		instance.getCommand("chatcolor").setExecutor(new CommandChatColor());
-		
-	}
-	
+    @Override
+    protected void init(NebulaCore instance) {
+        instance.getCommand("chatcolor").setExecutor(new CommandChatColor());
+
+    }
+
 }
