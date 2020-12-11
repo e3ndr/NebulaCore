@@ -18,7 +18,7 @@ import org.json.simple.parser.JSONParser;
 
 import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.NebulaSettings;
-import xyz.e3ndr.NebulaCore.commands.CommandSpawn;
+import xyz.e3ndr.NebulaCore.modules.spawn.CommandSpawn;
 
 public class PlayerImpl extends NebulaPlayer {
     private static Connection conn;
@@ -52,7 +52,7 @@ public class PlayerImpl extends NebulaPlayer {
     @Override
     protected void load() {
         if (NebulaSettings.loadPlayerDataAsync) {
-            Bukkit.getScheduler().runTaskAsynchronously(NebulaCore.instance, () -> this.load0());
+            Bukkit.getScheduler().runTaskAsynchronously(NebulaCore.getInstance(), () -> this.load0());
         } else {
             this.load0();
         }
@@ -62,7 +62,7 @@ public class PlayerImpl extends NebulaPlayer {
         String query = "SELECT nickname, balance, homes, chatcolor, chattag FROM players WHERE uuid = ?";
 
         try {
-            NebulaCore.instance.check();
+            NebulaCore.getInstance().check();
             PreparedStatement p = conn.prepareStatement(query);
 
             p.setString(1, this.uuid.toString());
@@ -106,7 +106,7 @@ public class PlayerImpl extends NebulaPlayer {
     public static void generate(UUID uuid) throws SQLException {
         NebulaCore.log(new StringBuilder().append("&2Generating user data for &a").append(uuid));
         String create = "INSERT INTO players(uuid, nickname, balance, homes, chatcolor, chattag) VALUES(?, ?, ?, ?, ?, ?)";
-        NebulaCore.instance.check();
+        NebulaCore.getInstance().check();
         PreparedStatement p = conn.prepareStatement(create);
 
         p.setString(1, uuid.toString());
@@ -121,7 +121,7 @@ public class PlayerImpl extends NebulaPlayer {
 
     @Override
     public void save() {
-        if ((this.player == null) || NebulaSettings.updatePlayerDataInstantly) this.save0();
+        if ((this.bukkit == null) || NebulaSettings.updatePlayerDataInstantly) this.save0();
     }
 
     @SuppressWarnings("unchecked")
@@ -130,7 +130,7 @@ public class PlayerImpl extends NebulaPlayer {
         String save = "UPDATE players SET nickname = ?, balance = ?, homes = ?, chatcolor = ?, chattag = ? WHERE uuid = ?";
 
         try {
-            NebulaCore.instance.check();
+            NebulaCore.getInstance().check();
             PreparedStatement p = conn.prepareStatement(save);
 
             JSONArray homes = new JSONArray();
@@ -165,7 +165,7 @@ public class PlayerImpl extends NebulaPlayer {
     @Override
     public Location getSpawn() {
         Location home = this.homes.get("home");
-        Location bed = (this.player != null) ? this.player.getBedSpawnLocation() : null;
+        Location bed = (this.bukkit != null) ? this.bukkit.getBedSpawnLocation() : null;
         Location spawn = CommandSpawn.getSpawn();
 
         if ((home != null) && NebulaSettings.spawnAtHome) {
@@ -187,7 +187,7 @@ public class PlayerImpl extends NebulaPlayer {
         String query = "SELECT nickname, balance, homes, chatcolor, chattag FROM players WHERE uuid = ?";
 
         try {
-            NebulaCore.instance.check();
+            NebulaCore.getInstance().check();
             PreparedStatement p = conn.prepareStatement(query);
 
             p.setString(1, uuid.toString());

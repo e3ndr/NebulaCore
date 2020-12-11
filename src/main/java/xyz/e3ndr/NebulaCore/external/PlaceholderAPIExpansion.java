@@ -20,7 +20,7 @@ public class PlaceholderApiExpansion extends PlaceholderExpansion {
 
     @Override
     public String getVersion() {
-        return NebulaCore.instance.getDescription().getVersion();
+        return NebulaCore.getInstance().getDescription().getVersion();
     }
 
     @Override

@@ -2,14 +2,18 @@ package xyz.e3ndr.NebulaCore.api;
 
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public class ChatColorConfiguration {
-    public ChatColor color;
-    public boolean reset = false;
-    public boolean italic = false;
-    public boolean bold = false;
-    public boolean underline = false;
-    public boolean strike = false;
+    private @Nullable @Getter @Setter ChatColor color;
+    private @Getter @Setter boolean reset = false;
+    private @Getter @Setter boolean italic = false;
+    private @Getter @Setter boolean bold = false;
+    private @Getter @Setter boolean underline = false;
+    private @Getter @Setter boolean strike = false;
 
     public ChatColorConfiguration() {}
 
@@ -26,10 +30,10 @@ public class ChatColorConfiguration {
     }
 
     public ChatColorConfiguration(ItemStack item) {
-        this.setColor(item);
+        this.setColorFromItem(item);
     }
 
-    public void setColor(ItemStack item) {
+    public void setColorFromItem(ItemStack item) {
         this.color = getColor(item);
     }
 

@@ -10,6 +10,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Nullable;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 public abstract class NebulaPlayer {
     private static Map<UUID, NebulaPlayer> playerCache = new HashMap<>();
@@ -20,12 +25,15 @@ public abstract class NebulaPlayer {
     protected Map<String, Location> homes = new HashMap<>();
     protected double balance = 0;
     protected String nickname = null;
-    public UUID uuid;
-    public Player player;
-    public long lastEvent = System.currentTimeMillis();
-    public boolean messagingEnabled = true;
-    public List<UUID> ignoredPlayers = new ArrayList<>();
-    public NebulaPlayer lastReceived;
+
+    //@formatter:off
+    protected @NonNull  @Getter         List<UUID> ignoredPlayers = new ArrayList<>();
+    protected           @Getter @Setter long lastEvent = System.currentTimeMillis();
+    protected           @Getter         boolean messagingEnabled = true;
+    protected @Nullable @Getter @Setter NebulaPlayer lastReceived;
+    protected @Nullable @Getter         Player bukkit;
+    protected @NonNull  @Getter         UUID uuid;
+    //@formatter:on
 
     protected NebulaPlayer() {
         if (provider == null) provider = this;
@@ -37,7 +45,7 @@ public abstract class NebulaPlayer {
         if (playerCache.containsKey(this.uuid)) {
             throw new IllegalStateException("Player has already been initalized.");
         } else {
-            this.player = player;
+            this.bukkit = player;
             playerCache.put(this.uuid, this);
             this.load();
         }
@@ -50,7 +58,7 @@ public abstract class NebulaPlayer {
 
     public Location getDefaultHome() {
         Location home = this.homes.get("home");
-        Location bed = (this.player == null) ? Bukkit.getOfflinePlayer(this.uuid).getBedSpawnLocation() : this.player.getBedSpawnLocation();
+        Location bed = (this.bukkit == null) ? Bukkit.getOfflinePlayer(this.uuid).getBedSpawnLocation() : this.bukkit.getBedSpawnLocation();
 
         if (home != null) {
             return home;
@@ -61,7 +69,7 @@ public abstract class NebulaPlayer {
 
     public Map<String, Location> getHomes() {
         Map<String, Location> homes = new HashMap<>();
-        Location bed = (this.player != null) ? this.player.getBedSpawnLocation() : null;
+        Location bed = (this.bukkit != null) ? this.bukkit.getBedSpawnLocation() : null;
 
         if (bed != null) {
             homes.put("bed", bed);
@@ -115,7 +123,7 @@ public abstract class NebulaPlayer {
     }
 
     public int sendMessage(NebulaPlayer sender, String message) {
-        if (this.player == null) {
+        if (this.bukkit == null) {
             return 3;
         } else if (sender == null) {
             this.sendMessage(message);
@@ -135,11 +143,11 @@ public abstract class NebulaPlayer {
     }
 
     public void sendMessage(String message) {
-        if (this.player != null) this.player.sendMessage(message);
+        if (this.bukkit != null) this.bukkit.sendMessage(message);
     }
 
     public String getName() {
-        return (this.player == null) ? Bukkit.getOfflinePlayer(this.uuid).getName() : this.player.getName();
+        return (this.bukkit == null) ? Bukkit.getOfflinePlayer(this.uuid).getName() : this.bukkit.getName();
     }
 
     public abstract String getNick();
@@ -171,9 +179,9 @@ public abstract class NebulaPlayer {
 
     protected void setNick0(String nick) {
         this.nickname = nick;
-        if (this.player != null) {
-            this.player.setDisplayName(nick);
-            if (NebulaSettings.updateTab) this.player.setPlayerListName(nick);
+        if (this.bukkit != null) {
+            this.bukkit.setDisplayName(nick);
+            if (NebulaSettings.updateTab) this.bukkit.setPlayerListName(nick);
         }
     }
 

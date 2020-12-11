@@ -1,6 +1,7 @@
 package xyz.e3ndr.NebulaCore.api;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -9,7 +10,7 @@ import org.bukkit.util.Consumer;
 
 public class Callback {
     private static final String command = "/tellraw %player% [\"\",{\"text\":\"Click here to enter text for %name%.\",\"bold\":true,\"color\":\"green\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"/nebula callback %id% \"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":[\"\",{\"text\":\"Click here to enter text for %name%.\",\"color\":\"green\"}]}}]";
-    private static HashMap<Integer, Consumer<String>> callbacks = new HashMap<>();
+    private static Map<Integer, Consumer<String>> callbacks = new HashMap<>();
     private static Random random = new Random();
 
     private int id;

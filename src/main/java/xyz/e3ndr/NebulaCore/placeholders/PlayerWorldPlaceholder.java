@@ -11,7 +11,7 @@ public class PlayerWorldPlaceholder extends AbstractPlaceholder {
     @Override
     public String replace(NebulaPlayer player) {
         if (player != null) {
-            return player.player.getWorld().getName();
+            return player.getBukkit().getWorld().getName();
         } else {
             return "";
         }

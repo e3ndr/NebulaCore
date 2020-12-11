@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
 
 public class GUIListener implements Listener {
+
     @SuppressWarnings("deprecation")
     @EventHandler
     public void onClick(InventoryClickEvent e) {
@@ -40,4 +41,5 @@ public class GUIListener implements Listener {
             e.setCancelled(true);
         }
     }
+
 }

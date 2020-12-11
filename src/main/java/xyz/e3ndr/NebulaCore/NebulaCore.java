@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -18,32 +19,36 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.google.common.io.Files;
 
+import lombok.Getter;
 import xyz.e3ndr.NebulaCore.api.NebulaSettings;
 import xyz.e3ndr.NebulaCore.gui.GUIListener;
 import xyz.e3ndr.NebulaCore.gui.GUIWindow;
-import xyz.e3ndr.NebulaCore.module.warps.SQLiteWarpStorage;
 import xyz.e3ndr.NebulaCore.modules.AbstractModule;
-import xyz.e3ndr.NebulaCore.modules.ModuleAntiAFK;
-import xyz.e3ndr.NebulaCore.modules.ModuleBase;
-import xyz.e3ndr.NebulaCore.modules.ModuleChatColor;
-import xyz.e3ndr.NebulaCore.modules.ModuleCustomRecipes;
-import xyz.e3ndr.NebulaCore.modules.ModuleEconomy;
-import xyz.e3ndr.NebulaCore.modules.ModuleFun;
-import xyz.e3ndr.NebulaCore.modules.ModuleHomes;
-import xyz.e3ndr.NebulaCore.modules.ModuleSpawn;
-import xyz.e3ndr.NebulaCore.modules.ModuleWarps;
+import xyz.e3ndr.NebulaCore.modules.antiafk.ModuleAntiAFK;
+import xyz.e3ndr.NebulaCore.modules.base.ModuleBase;
+import xyz.e3ndr.NebulaCore.modules.chatcolor.ModuleChatColor;
+import xyz.e3ndr.NebulaCore.modules.customrecipes.ModuleCustomRecipes;
+import xyz.e3ndr.NebulaCore.modules.economy.ModuleEconomy;
+import xyz.e3ndr.NebulaCore.modules.fun.ModuleFun;
+import xyz.e3ndr.NebulaCore.modules.homes.ModuleHomes;
+import xyz.e3ndr.NebulaCore.modules.spawn.ModuleSpawn;
+import xyz.e3ndr.NebulaCore.modules.warps.ModuleWarps;
+import xyz.e3ndr.NebulaCore.modules.warps.SQLiteWarpStorage;
 import xyz.e3ndr.NebulaCore.placeholders.providers.NebulaPlaceholders;
 
 public class NebulaCore extends JavaPlugin {
-    public ArrayList<AbstractModule> modules = new ArrayList<>();
+    public static final File dir = new File("plugins/Nebula/");
+
+    private @Getter static NebulaCore instance;
+
     private YamlConfiguration config;
     private YamlConfiguration lang;
     private YamlConfiguration moduleConfig;
     private String langPrefix;
-    public static NebulaCore instance;
-    public Connection conn = null;
-    public static final File dir = new File("plugins/Nebula/");
-    public boolean placeholderAPI;
+
+    private @Getter List<AbstractModule> modules = new ArrayList<>();
+    private @Getter Connection conn = null;
+    private @Getter boolean placeholderAPI;
     // public YamlConfiguration upgrades;
 
     @Override
@@ -83,7 +88,10 @@ public class NebulaCore extends JavaPlugin {
         this.loadModules();
 
         Bukkit.getPluginManager().registerEvents(new EventListener(), this);
-        for (Player player : Bukkit.getOnlinePlayers()) PlayerImpl.getPlayer(player); // Reload protection
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            PlayerImpl.getPlayer(player); // Reload protection
+        }
 
         long finish = System.currentTimeMillis();
         log(new StringBuilder().append("Done! Took ").append(finish - start).append("ms to enable!"));
@@ -97,8 +105,9 @@ public class NebulaCore extends JavaPlugin {
     }
 
     private void loadModules() {
-        for (AbstractModule module : this.modules) module.start(this.moduleConfig, this);
-
+        for (AbstractModule module : this.modules) {
+            module.start(this.moduleConfig, this);
+        }
     }
 
     private void loadDatabase() {
@@ -106,7 +115,6 @@ public class NebulaCore extends JavaPlugin {
 
         PlayerImpl.init(this.conn);
         new SQLiteWarpStorage().init(); // Required as /spawn and /warp use this.
-
     }
 
     private void connect() {
@@ -129,12 +137,16 @@ public class NebulaCore extends JavaPlugin {
 
     public void saveResource(File out, String file) {
         InputStream in = this.getResource(file);
+
         try {
             byte[] bytes = new byte[in.available()];
+
             in.read(bytes);
-            out.createNewFile();
-            Files.write(bytes, out);
             in.close();
+
+            out.createNewFile();
+
+            Files.write(bytes, out);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,20 +178,27 @@ public class NebulaCore extends JavaPlugin {
         this.lang = YamlConfiguration.loadConfiguration(langFile);
         this.lang.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(this.getResource("lang.yml"))));
         this.langPrefix = lang.getString("prefix", "");
-
     }
 
     @Override
     public void onDisable() {
         ModuleCustomRecipes.removeRecipes();
-        for (Player player : Bukkit.getOnlinePlayers()) PlayerImpl.getPlayer(player).offline();
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            PlayerImpl.getPlayer(player).offline();
+        }
+
         try {
             this.conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if (GUIWindow.windows != null) for (GUIWindow window : GUIWindow.windows.values()) window.unregister();
+        if (GUIWindow.windows != null) {
+            for (GUIWindow window : GUIWindow.windows.values()) {
+                window.unregister();
+            }
+        }
 
         log("Good bye, Thanks for using Nebula!");
         instance = null;
@@ -200,7 +219,10 @@ public class NebulaCore extends JavaPlugin {
     public static String getLang(String key, UUID uuid, boolean prefix) {
         StringBuilder sb = new StringBuilder();
 
-        if (prefix) sb.append(instance.langPrefix);
+        if (prefix) {
+            sb.append(instance.langPrefix);
+        }
+
         sb.append(instance.lang.getString(key.replace('.', '-'), "&c&o" + key));
 
         return ChatColor.translateAlternateColorCodes('&', NebulaPlaceholders.instance.format(uuid, sb.toString()));

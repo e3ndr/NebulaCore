@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.NebulaSettings;
-import xyz.e3ndr.NebulaCore.commands.CommandSpawn;
+import xyz.e3ndr.NebulaCore.modules.spawn.CommandSpawn;
 
 public class EventListener implements Listener {
 
@@ -38,7 +38,7 @@ public class EventListener implements Listener {
                 Bukkit.getConsoleSender().sendMessage(send);
 
                 for (NebulaPlayer recipient : NebulaPlayer.getOnline()) {
-                    if (recipient.player.hasPermission("Nebula.chat.recieve") && !recipient.ignoredPlayers.contains(player.getUniqueId())) {
+                    if (recipient.getBukkit().hasPermission("Nebula.chat.recieve") && !recipient.getIgnoredPlayers().contains(player.getUniqueId())) {
                         recipient.sendMessage(send);
                     }
                 }

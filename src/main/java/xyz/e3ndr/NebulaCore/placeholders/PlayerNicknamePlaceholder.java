@@ -11,7 +11,7 @@ public class PlayerNicknamePlaceholder extends AbstractPlaceholder {
     @Override
     public String replace(NebulaPlayer player) {
         if (player != null) {
-            return player.player.getDisplayName();
+            return player.getBukkit().getDisplayName();
         } else {
             return "Console";
         }

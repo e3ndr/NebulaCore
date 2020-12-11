@@ -70,10 +70,12 @@ import com.google.common.collect.Maps;
  * https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/browse/src/main/java/org/bukkit/Material.java
  * XMaterial v1: https://www.spigotmc.org/threads/329630/
  *
- * @author Crypto Morin
+ * @author  Crypto Morin
+ * 
  * @version 4.0.0
- * @see Material
- * @see ItemStack
+ * 
+ * @see     Material
+ * @see     ItemStack
  */
 public enum XMaterial {
     ACACIA_BOAT("BOAT_ACACIA"),
@@ -1212,9 +1214,11 @@ public enum XMaterial {
      * <blockquote> {@link #supports(int) 13}} </blockquote>
      *
      * @return true if 1.13 or higher.
-     * @see #getVersion()
-     * @see #supports(int)
-     * @since 1.0.0
+     * 
+     * @see    #getVersion()
+     * @see    #supports(int)
+     * 
+     * @since  1.0.0
      */
     public static boolean isNewVersion() {
         return ISFLAT;
@@ -1241,8 +1245,10 @@ public enum XMaterial {
      * The current version of the server.
      *
      * @return the current server version or 0.0 if unknown.
-     * @see #isNewVersion()
-     * @since 2.0.0
+     * 
+     * @see    #isNewVersion()
+     * 
+     * @since  2.0.0
      */
     public static double getVersion() {
         return VERSION;
@@ -1253,7 +1259,8 @@ public enum XMaterial {
      * find the old material name with its data value using a cached search for
      * optimization.
      *
-     * @see #matchDefinedXMaterial(String, byte)
+     * @see   #matchDefinedXMaterial(String, byte)
+     * 
      * @since 1.0.0
      */
 
@@ -1280,9 +1287,11 @@ public enum XMaterial {
      * simple {@link Optional#isPresent()} check. This is just to avoid multiple
      * loops for maximum performance.
      *
-     * @param name name of the material.
-     * @return true if XMaterial enum has this material.
-     * @since 1.0.0
+     * @param  name name of the material.
+     * 
+     * @return      true if XMaterial enum has this material.
+     * 
+     * @since       1.0.0
      */
     public static boolean contains(String name) {
         Validate.notEmpty(name, "Cannot check for null or empty material name");
@@ -1295,7 +1304,8 @@ public enum XMaterial {
     /**
      * Parses the given material name as an XMaterial with unspecified data value.
      *
-     * @see #matchXMaterial(String, byte)
+     * @see   #matchXMaterial(String, byte)
+     * 
      * @since 2.0.0
      */
 
@@ -1314,8 +1324,9 @@ public enum XMaterial {
      *     {@code WOOL, 14  -> RED_WOOL}
      * </pre>
      *
-     * @see #matchDefinedXMaterial(String, byte)
-     * @see #matchXMaterial(ItemStack)
+     * @see   #matchDefinedXMaterial(String, byte)
+     * @see   #matchXMaterial(ItemStack)
+     * 
      * @since 2.0.0
      */
 
@@ -1344,14 +1355,19 @@ public enum XMaterial {
      *     {@code WOOL, 14  -> RED_WOOL}
      * </pre>
      *
-     * @param name the material string that consists of the material name, data and
-     * separator character.
-     * @return the parsed XMaterial.
-     * @see #matchXMaterial(String)
-     * @since 3.0.0
+     * @param  name the material string that consists of the material name, data and
+     *              separator character.
+     * 
+     * @return      the parsed XMaterial.
+     * 
+     * @see         #matchXMaterial(String)
+     * 
+     * @since       3.0.0
      */
     private static Optional<XMaterial> matchXMaterialWithData(String name) {
-        for (char separator : new char[] { ',', ':'
+        for (char separator : new char[] {
+                ',',
+                ':'
         }) {
             int index = name.indexOf(separator);
             if (index == -1) continue;
@@ -1368,9 +1384,11 @@ public enum XMaterial {
      * Parses the given material as an XMaterial.
      *
      * @throws IllegalArgumentException may be thrown as an unexpected exception.
-     * @see #matchDefinedXMaterial(String, byte)
-     * @see #matchXMaterial(ItemStack)
-     * @since 2.0.0
+     * 
+     * @see                             #matchDefinedXMaterial(String, byte)
+     * @see                             #matchXMaterial(ItemStack)
+     * 
+     * @since                           2.0.0
      */
 
     public static XMaterial matchXMaterial(Material material) {
@@ -1382,11 +1400,15 @@ public enum XMaterial {
      * Parses the given item as an XMaterial using its material and data value
      * (durability).
      *
-     * @param item the ItemStack to match.
-     * @return an XMaterial if matched any.
+     * @param  item                     the ItemStack to match.
+     * 
+     * @return                          an XMaterial if matched any.
+     * 
      * @throws IllegalArgumentException may be thrown as an unexpected exception.
-     * @see #matchDefinedXMaterial(String, byte)
-     * @since 2.0.0
+     * 
+     * @see                             #matchDefinedXMaterial(String, byte)
+     * 
+     * @since                           2.0.0
      */
 
     @SuppressWarnings("deprecation")
@@ -1400,14 +1422,17 @@ public enum XMaterial {
      * Parses the given material name and data value as an XMaterial. All the values
      * passed to this method will not be null or empty and are formatted correctly.
      *
-     * @param name the formatted name of the material.
-     * @param data the data value of the material.
-     * @return an XMaterial (with the same data value if specified)
-     * @see #matchXMaterial(String, byte)
-     * @see #matchXMaterial(Material)
-     * @see #matchXMaterial(int, byte)
-     * @see #matchXMaterial(ItemStack)
-     * @since 3.0.0
+     * @param  name the formatted name of the material.
+     * @param  data the data value of the material.
+     * 
+     * @return      an XMaterial (with the same data value if specified)
+     * 
+     * @see         #matchXMaterial(String, byte)
+     * @see         #matchXMaterial(Material)
+     * @see         #matchXMaterial(int, byte)
+     * @see         #matchXMaterial(ItemStack)
+     * 
+     * @since       3.0.0
      */
 
     private static Optional<XMaterial> matchDefinedXMaterial(String name, byte data) {
@@ -1443,11 +1468,14 @@ public enum XMaterial {
      * <p>
      * {@code MELON, CARROT, POTATO, BEETROOT -> true}
      *
-     * @param name the name of the material to check.
-     * @return true if there's a duplicated material for this material, otherwise
-     * false.
-     * @see #isDuplicated()
-     * @since 2.0.0
+     * @param  name the name of the material to check.
+     * 
+     * @return      true if there's a duplicated material for this material,
+     *              otherwise false.
+     * 
+     * @see         #isDuplicated()
+     * 
+     * @since       2.0.0
      */
     public static boolean isDuplicated(String name) {
         Validate.notEmpty(name, "Cannot check duplication for null or empty material name");
@@ -1464,11 +1492,14 @@ public enum XMaterial {
      * value.<br>
      * You should avoid using this for performance issues.
      *
-     * @param id the ID (Magic value) of the material.
-     * @param data the data value of the material.
-     * @return a parsed XMaterial with the same ID and data value.
-     * @see #matchXMaterial(ItemStack)
-     * @since 2.0.0
+     * @param  id   the ID (Magic value) of the material.
+     * @param  data the data value of the material.
+     * 
+     * @return      a parsed XMaterial with the same ID and data value.
+     * 
+     * @see         #matchXMaterial(ItemStack)
+     * 
+     * @since       2.0.0
      */
 
     public static Optional<XMaterial> matchXMaterial(int id, byte data) {
@@ -1483,10 +1514,14 @@ public enum XMaterial {
      * A solution for <b>XMaterial Paradox</b>. Manually parses the duplicated
      * materials to find the exact material based on the server version.
      *
-     * @param name the name of the material.
-     * @return the duplicated XMaterial based on the version.
+     * @param  name                     the name of the material.
+     * 
+     * @return                          the duplicated XMaterial based on the
+     *                                  version.
+     * 
      * @throws IllegalArgumentException may be thrown. If thrown, it's a bug.
-     * @since 2.0.0
+     * 
+     * @since                           2.0.0
      */
 
     private static XMaterial requestDuplicatedXMaterial(String name, byte data) {
@@ -1498,10 +1533,13 @@ public enum XMaterial {
     /**
      * Always returns the value with the given duplicated material key name.
      *
-     * @param name the name of the material.
-     * @return the new XMaterial of this duplicated material.
-     * @see #getXMaterialIfDuplicated(String)
-     * @since 2.0.0
+     * @param  name the name of the material.
+     * 
+     * @return      the new XMaterial of this duplicated material.
+     * 
+     * @see         #getXMaterialIfDuplicated(String)
+     * 
+     * @since       2.0.0
      */
 
     public static Optional<XMaterial> getNewXMaterialIfDuplicated(String name) {
@@ -1516,10 +1554,14 @@ public enum XMaterial {
      * Checks if the item is duplicated for a different purpose in new versions from
      * {@link #DUPLICATED}.
      *
-     * @param name the name of the material.
-     * @return the other XMaterial (key or value) of the XMaterial (key or value).
-     * @see #matchXMaterial(String, byte)
-     * @since 2.0.0
+     * @param  name the name of the material.
+     * 
+     * @return      the other XMaterial (key or value) of the XMaterial (key or
+     *              value).
+     * 
+     * @see         #matchXMaterial(String, byte)
+     * 
+     * @since       2.0.0
      */
 
     public static XMaterial getXMaterialIfDuplicated(String name) {
@@ -1538,9 +1580,11 @@ public enum XMaterial {
      * numbers and extra non-English characters. Also removes some config/in-game
      * based strings.
      *
-     * @param name the material name to modify.
-     * @return a Material enum name.
-     * @since 2.0.0
+     * @param  name the material name to modify.
+     * 
+     * @return      a Material enum name.
+     * 
+     * @since       2.0.0
      */
 
     private static String format(String name) {
@@ -1551,10 +1595,13 @@ public enum XMaterial {
      * Checks if the specified version is the same version or higher than the
      * current server version.
      *
-     * @param version the major version to be checked. "1." is ignored. E.g. 1.12 =
-     * 12 | 1.9 = 9
-     * @return true of the version is equal or higher than the current version.
-     * @since 2.0.0
+     * @param  version the major version to be checked. "1." is ignored. E.g. 1.12 =
+     *                 12 | 1.9 = 9
+     * 
+     * @return         true of the version is equal or higher than the current
+     *                 version.
+     * 
+     * @since          2.0.0
      */
     public static boolean supports(int version) {
         return VERSION >= version;
@@ -1564,8 +1611,10 @@ public enum XMaterial {
      * Converts the enum names to a more friendly and readable string.
      *
      * @return a formatted string.
-     * @see #toWord(String)
-     * @since 2.1.0
+     * 
+     * @see    #toWord(String)
+     * 
+     * @since  2.1.0
      */
 
     public static String toWord(Material material) {
@@ -1585,9 +1634,11 @@ public enum XMaterial {
      *     ENCHANTED_GOLDEN_APPLE  -> Enchanted Golden Apple
      * </pre>
      *
-     * @param name the name of the enum.
-     * @return a cleaned more readable enum name.
-     * @since 2.1.0
+     * @param  name the name of the enum.
+     * 
+     * @return      a cleaned more readable enum name.
+     * 
+     * @since       2.1.0
      */
 
     private static String toWord(String name) {
@@ -1597,10 +1648,13 @@ public enum XMaterial {
     /**
      * Gets the exact major version (..., 1.9, 1.10, ..., 1.14)
      *
-     * @param version Supports {@link Bukkit#getVersion()},
-     * {@link Bukkit#getBukkitVersion()} and normal formats such as "1.14"
-     * @return the exact major version.
-     * @since 2.0.0
+     * @param  version Supports {@link Bukkit#getVersion()},
+     *                 {@link Bukkit#getBukkitVersion()} and normal formats such as
+     *                 "1.14"
+     * 
+     * @return         the exact major version.
+     * 
+     * @since          2.0.0
      */
 
     public static String getMajorVersion(String version) {
@@ -1627,10 +1681,13 @@ public enum XMaterial {
      * Checks if the material can be damaged by using it. Names going through this
      * method are not formatted.
      *
-     * @param name the name of the material.
-     * @return true of the material can be damaged.
-     * @see #isDamageable()
-     * @since 1.0.0
+     * @param  name the name of the material.
+     * 
+     * @return      true of the material can be damaged.
+     * 
+     * @see         #isDamageable()
+     * 
+     * @since       1.0.0
      */
     public static boolean isDamageable(String name) {
         Objects.requireNonNull(name, "Material name cannot be null");
@@ -1679,11 +1736,13 @@ public enum XMaterial {
      * Want to learn RegEx? You can mess around in
      * <a href="https://regexr.com/">RegExr</a> website.
      *
-     * @param material the base material to match other materials with.
-     * @param materials the material names to check base material on.
-     * @return true if one of the given material names is similar to the base
-     * material.
-     * @since 3.1.1
+     * @param  material  the base material to match other materials with.
+     * @param  materials the material names to check base material on.
+     * 
+     * @return           true if one of the given material names is similar to the
+     *                   base material.
+     * 
+     * @since            3.1.1
      */
     public static boolean isOneOf(Material material, List<String> materials) {
         if (materials == null || materials.isEmpty()) return false;
@@ -1715,7 +1774,8 @@ public enum XMaterial {
      * have a version it'll return 0;
      *
      * @return the Minecraft version which tihs material was added in.
-     * @since 3.0.0
+     * 
+     * @since  3.0.0
      */
     public int getMaterialVersion() {
         if (this.legacy.length == 0) return 0;
@@ -1732,8 +1792,10 @@ public enum XMaterial {
      * Use {@link #parseItem()} instead when creating new ItemStacks.
      *
      * @param item the item to change its type.
-     * @see #parseItem()
-     * @since 3.0.0
+     * 
+     * @see        #parseItem()
+     * 
+     * @since      3.0.0
      */
 
     @SuppressWarnings("deprecation")
@@ -1749,11 +1811,14 @@ public enum XMaterial {
      * Checks if the list of given material names matches the given base material.
      * Mostly used for configs.
      *
-     * @param materials the material names to check base material on.
-     * @return true if one of the given material names is similar to the base
-     * material.
-     * @see #isOneOf(Material, List)
-     * @since 3.0.0
+     * @param  materials the material names to check base material on.
+     * 
+     * @return           true if one of the given material names is similar to the
+     *                   base material.
+     * 
+     * @see              #isOneOf(Material, List)
+     * 
+     * @since            3.0.0
      */
     public boolean isOneOf(List<String> materials) {
         Material material = this.parseMaterial();
@@ -1766,9 +1831,11 @@ public enum XMaterial {
      * names. All the values passed to this method will not be null or empty and are
      * formatted correctly.
      *
-     * @param name the name to check
-     * @return true if it's one of the legacy names.
-     * @since 2.0.0
+     * @param  name the name to check
+     * 
+     * @return      true if it's one of the legacy names.
+     * 
+     * @since       2.0.0
      */
     private boolean anyMatchLegacy(String name) {
         for (String legacy : this.legacy) {
@@ -1783,8 +1850,10 @@ public enum XMaterial {
      * using {@link #name()} instead.
      *
      * @return string of this object.
-     * @see #toWord(String)
-     * @since 3.0.0
+     * 
+     * @see    #toWord(String)
+     * 
+     * @since  3.0.0
      */
     @Override
     public String toString() {
@@ -1795,9 +1864,11 @@ public enum XMaterial {
      * Gets the ID (Magic value) of the material.
      *
      * @return the ID of the material or <b>-1</b> if it's a new block or the
-     * material is not supported.
-     * @see #matchXMaterial(int, byte)
-     * @since 2.2.0
+     *         material is not supported.
+     * 
+     * @see    #matchXMaterial(int, byte)
+     * 
+     * @since  2.2.0
      */
     @SuppressWarnings("deprecation")
     public int getId() {
@@ -1810,10 +1881,12 @@ public enum XMaterial {
      * Checks if the material has any duplicates.
      *
      * @return true if there is a duplicated name for this material, otherwise
-     * false.
-     * @see #getXMaterialIfDuplicated()
-     * @see #isDuplicated(String)
-     * @since 2.0.0
+     *         false.
+     * 
+     * @see    #getXMaterialIfDuplicated()
+     * @see    #isDuplicated(String)
+     * 
+     * @since  2.0.0
      */
     public boolean isDuplicated() {
         return DUPLICATED.containsKey(this);
@@ -1823,9 +1896,11 @@ public enum XMaterial {
      * Checks if the item is duplicated for a different purpose in new versions.
      *
      * @return true if the item's name is duplicated, otherwise false.
-     * @see #isDuplicated()
-     * @see #getNewXMaterialIfDuplicated(String)
-     * @since 2.0.0
+     * 
+     * @see    #isDuplicated()
+     * @see    #getNewXMaterialIfDuplicated(String)
+     * 
+     * @since  2.0.0
      */
 
     public XMaterial getXMaterialIfDuplicated() {
@@ -1837,9 +1912,11 @@ public enum XMaterial {
      * method are not formatted.
      *
      * @return true if the item can be damaged (have its durability changed),
-     * otherwise false.
-     * @see #isDamageable(String)
-     * @since 1.0.0
+     *         otherwise false.
+     * 
+     * @see    #isDamageable(String)
+     * 
+     * @since  1.0.0
      */
     public boolean isDamageable() {
         return isDamageable(this.name());
@@ -1854,7 +1931,8 @@ public enum XMaterial {
      * damageable.
      *
      * @return data of this material, or 0 if none.
-     * @since 1.0.0
+     * 
+     * @since  1.0.0
      */
     public byte getData() {
         return data;
@@ -1866,8 +1944,9 @@ public enum XMaterial {
      * first element will indicate which version the material was added in.
      *
      * @return a list of legacy material names and the first element as the version
-     * the material was added in if new.
-     * @since 1.0.0
+     *         the material was added in if new.
+     * 
+     * @since  1.0.0
      */
 
     public String[] getLegacy() {
@@ -1878,10 +1957,12 @@ public enum XMaterial {
      * Parses an item from this XMaterial. Uses data values on older versions.
      *
      * @return an ItemStack with the same material (and data value if in older
-     * versions.)
-     * @see #parseItem(boolean)
-     * @see #setType(ItemStack)
-     * @since 1.0.0
+     *         versions.)
+     * 
+     * @see    #parseItem(boolean)
+     * @see    #setType(ItemStack)
+     * 
+     * @since  1.0.0
      */
 
     public ItemStack parseItem() {
@@ -1891,11 +1972,14 @@ public enum XMaterial {
     /**
      * Parses an item from this XMaterial. Uses data values on older versions.
      *
-     * @param suggest if true {@link #parseMaterial(boolean)} true will be used.
-     * @return an ItemStack with the same material (and data value if in older
-     * versions.)
-     * @see #setType(ItemStack)
-     * @since 2.0.0
+     * @param  suggest if true {@link #parseMaterial(boolean)} true will be used.
+     * 
+     * @return         an ItemStack with the same material (and data value if in
+     *                 older versions.)
+     * 
+     * @see            #setType(ItemStack)
+     * 
+     * @since          2.0.0
      */
 
     @SuppressWarnings("deprecation")
@@ -1909,8 +1993,10 @@ public enum XMaterial {
      * Parses the material of this XMaterial.
      *
      * @return the material related to this XMaterial based on the server version.
-     * @see #parseMaterial(boolean)
-     * @since 1.0.0
+     * 
+     * @see    #parseMaterial(boolean)
+     * 
+     * @since  1.0.0
      */
 
     public Material parseMaterial() {
@@ -1920,11 +2006,15 @@ public enum XMaterial {
     /**
      * Parses the material of this XMaterial and accepts suggestions.
      *
-     * @param suggest use a suggested material (from older materials) if the
-     * material is added in a later version of Minecraft.
-     * @return the material related to this XMaterial based on the server version.
-     * @see #matchXMaterial(String, byte)
-     * @since 2.0.0
+     * @param  suggest use a suggested material (from older materials) if the
+     *                 material is added in a later version of Minecraft.
+     * 
+     * @return         the material related to this XMaterial based on the server
+     *                 version.
+     * 
+     * @see            #matchXMaterial(String, byte)
+     * 
+     * @since          2.0.0
      */
     public Material parseMaterial(boolean suggest) {
         Optional<Material> cache = PARSED_CACHE.getIfPresent(this);
@@ -1946,11 +2036,14 @@ public enum XMaterial {
      * Parses a material for older versions of Minecraft. Accepts suggestions if
      * specified.
      *
-     * @param suggest if true suggested materials will be considered for old
-     * versions.
-     * @return a parsed material suitable for the current Minecraft version.
-     * @see #parseMaterial(boolean)
-     * @since 2.0.0
+     * @param  suggest if true suggested materials will be considered for old
+     *                 versions.
+     * 
+     * @return         a parsed material suitable for the current Minecraft version.
+     * 
+     * @see            #parseMaterial(boolean)
+     * 
+     * @since          2.0.0
      */
 
     private Material requestOldMaterial(boolean suggest) {
@@ -1978,10 +2071,12 @@ public enum XMaterial {
     /**
      * Checks if an item has the same material (and data value on older versions).
      *
-     * @param item item to check.
-     * @return true if the material is the same as the item's material (and data
-     * value if on older versions), otherwise false.
-     * @since 1.0.0
+     * @param  item item to check.
+     * 
+     * @return      true if the material is the same as the item's material (and
+     *              data value if on older versions), otherwise false.
+     * 
+     * @since       1.0.0
      */
     @SuppressWarnings("deprecation")
     public boolean isSimilar(ItemStack item) {
@@ -1995,8 +2090,10 @@ public enum XMaterial {
      * supported in the current version.
      *
      * @return a list of suggested material names.
-     * @see #parseMaterial(boolean)
-     * @since 2.0.0
+     * 
+     * @see    #parseMaterial(boolean)
+     * 
+     * @since  2.0.0
      */
 
     public List<String> getSuggestions() {
@@ -2017,7 +2114,8 @@ public enum XMaterial {
      * you're going to parse and use the material later.
      *
      * @return true if the material exists in {@link Material} list.
-     * @since 2.0.0
+     * 
+     * @since  2.0.0
      */
     public boolean isSupported() {
         int version = this.getMaterialVersion();
@@ -2032,8 +2130,10 @@ public enum XMaterial {
      * Checks if the material is newly added after the 1.13 Aquatic Update.
      *
      * @return true if the material was newly added, otherwise false.
-     * @see #getMaterialVersion()
-     * @since 2.0.0
+     * 
+     * @see    #getMaterialVersion()
+     * 
+     * @since  2.0.0
      */
     public boolean isFromNewSystem() {
         return this.legacy.length != 0 && Integer.parseInt(this.legacy[0].substring(2)) > 13;

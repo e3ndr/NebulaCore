@@ -9,7 +9,6 @@ public class NebulaProvider {
     public static void init() {
         new PlayerImpl();
         new NebulaLangProvider();
-
     }
 
 }

@@ -12,7 +12,7 @@ public class PlayerPingPlaceholder extends AbstractPlaceholder {
     @Override
     public String replace(NebulaPlayer player) {
         if (player != null) {
-            return String.valueOf(Util.getPing(player.player));
+            return String.valueOf(Util.getPing(player.getBukkit()));
         } else {
             return "0";
         }
