@@ -1,17 +1,17 @@
-package xyz.e3ndr.NebulaCore.placeholders;
+package xyz.e3ndr.NebulaCore.placeholders.providers;
 
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import xyz.e3ndr.NebulaCore.external.PlaceholderAPIExpansion;
+import xyz.e3ndr.NebulaCore.external.PlaceholderApiExpansion;
 
-public class PlaceholderAPIPlaceholders extends AbstractPlaceholders {
+public class PlaceholderApiPlaceholders extends NebulaPlaceholders {
 
-    public PlaceholderAPIPlaceholders() {
+    public PlaceholderApiPlaceholders() {
         super();
-        new PlaceholderAPIExpansion().register();
+        new PlaceholderApiExpansion().register();
     }
 
     @Override

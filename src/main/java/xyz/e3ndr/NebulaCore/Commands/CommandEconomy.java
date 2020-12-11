@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandEconomy extends BaseCommand {
@@ -101,12 +101,12 @@ public class CommandEconomy extends BaseCommand {
                 if (!Util.isANumber(args[2])) {
                     executor.sendMessage(NebulaCore.getLang("error.argument").replace("%arg%", args[2]));
                 } else {
-                    AbstractPlayer player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(args[1]));
+                    NebulaPlayer player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[1]));
 
                     if (player == null) {
                         executor.sendMessage(NebulaCore.getLang("error.never.played"));
                     } else {
-                        double amount = Util.makePositive(Double.parseDouble(args[2]));
+                        double amount = Math.abs(Double.parseDouble(args[2]));
 
                         if (player.hasMoney(amount)) {
                             player.takeMoney(amount);
@@ -132,12 +132,12 @@ public class CommandEconomy extends BaseCommand {
                 if (!Util.isANumber(args[2])) {
                     executor.sendMessage(NebulaCore.getLang("error.argument").replace("%arg%", args[2]));
                 } else {
-                    AbstractPlayer player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(args[1]));
+                    NebulaPlayer player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[1]));
 
                     if (player == null) {
                         executor.sendMessage(NebulaCore.getLang("error.never.played"));
                     } else {
-                        double amount = Util.makePositive(Double.parseDouble(args[2]));
+                        double amount = Math.abs(Double.parseDouble(args[2]));
                         player.addMoney(amount);
                         executor.sendMessage(NebulaCore.getLang("economy.give", player.uuid).replace("%amount%", String.valueOf(amount)));
                     }
@@ -158,12 +158,12 @@ public class CommandEconomy extends BaseCommand {
                 if (!Util.isANumber(args[2])) {
                     executor.sendMessage(NebulaCore.getLang("error.argument").replace("%arg%", args[2]));
                 } else {
-                    AbstractPlayer player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(args[1]));
+                    NebulaPlayer player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[1]));
 
                     if (player == null) {
                         executor.sendMessage(NebulaCore.getLang("error.never.played"));
                     } else {
-                        double amount = Util.makePositive(Double.parseDouble(args[2]));
+                        double amount = Math.abs(Double.parseDouble(args[2]));
                         player.setBalance(amount);
                         executor.sendMessage(NebulaCore.getLang("economy.set", player.uuid).replace("%amount%", String.valueOf(amount)));
                     }
@@ -180,7 +180,7 @@ public class CommandEconomy extends BaseCommand {
                 executor.sendMessage("Only players can execute this command.");
             } else {
                 if (executor.hasPermission("Nebula.balance")) {
-                    AbstractPlayer player = AbstractPlayer.getPlayer((Player) executor);
+                    NebulaPlayer player = NebulaPlayer.getPlayer((Player) executor);
 
                     executor.sendMessage(NebulaCore.getLang("economy.balance", player.uuid).replace("%bal%", String.valueOf(player.getBalance())));
                 } else {
@@ -189,7 +189,7 @@ public class CommandEconomy extends BaseCommand {
             }
         } else {
             if (executor.hasPermission("Nebula.balance.others")) {
-                AbstractPlayer player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(name));
+                NebulaPlayer player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(name));
 
                 if (player == null) {
                     executor.sendMessage(NebulaCore.getLang("error.never.played"));

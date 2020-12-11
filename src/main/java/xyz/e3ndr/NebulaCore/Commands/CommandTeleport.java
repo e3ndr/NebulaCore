@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandTeleport extends BaseCommand {
@@ -18,7 +18,7 @@ public class CommandTeleport extends BaseCommand {
             Player sender = (Player) executor;
 
             if (args.length == 1) {
-                AbstractPlayer player = AbstractPlayer.getPlayer(args[0]);
+                NebulaPlayer player = NebulaPlayer.getPlayer(args[0]);
 
                 if (player == null) {
                     executor.sendMessage(NebulaCore.getLang("error.player.offline"));
@@ -28,8 +28,8 @@ public class CommandTeleport extends BaseCommand {
                 }
             } else if ((args.length > 1)) {
                 if (executor.hasPermission("Nebula.teleport.others")) {
-                    AbstractPlayer player1 = AbstractPlayer.getPlayer(args[0]);
-                    AbstractPlayer player2 = AbstractPlayer.getPlayer(args[1]);
+                    NebulaPlayer player1 = NebulaPlayer.getPlayer(args[0]);
+                    NebulaPlayer player2 = NebulaPlayer.getPlayer(args[1]);
 
                     if ((player1 == null) || (player2 == null)) {
                         executor.sendMessage(NebulaCore.getLang("error.player.offline"));

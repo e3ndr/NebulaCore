@@ -4,9 +4,9 @@ import org.bukkit.OfflinePlayer;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.placeholders.AbstractPlaceholders;
+import xyz.e3ndr.NebulaCore.placeholders.providers.NebulaPlaceholders;
 
-public class PlaceholderAPIExpansion extends PlaceholderExpansion {
+public class PlaceholderApiExpansion extends PlaceholderExpansion {
 
     @Override
     public String getAuthor() {
@@ -31,7 +31,7 @@ public class PlaceholderAPIExpansion extends PlaceholderExpansion {
     @Override
     public String onRequest(OfflinePlayer player, String identifier) {
         String replace = new StringBuilder().append("%").append(identifier).append("%").toString();
-        String replaced = AbstractPlaceholders.instance.formatNative(player.isOnline() ? player.getPlayer() : null, replace);
+        String replaced = NebulaPlaceholders.instance.formatNative(player.isOnline() ? player.getPlayer() : null, replace);
 
         return replaced.equals(replace) ? null : replaced;
     }

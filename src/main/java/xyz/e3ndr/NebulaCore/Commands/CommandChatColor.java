@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Consumer;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.ChatColorConfiguration;
 import xyz.e3ndr.NebulaCore.api.Util;
 import xyz.e3ndr.NebulaCore.api.XMaterial;
@@ -28,11 +28,11 @@ public class CommandChatColor extends BaseCommand {
             executor.sendMessage("Only players can execute this command.");
         } else if (executor.hasPermission("Nebula.chatcolor")) {
             if (args.length == 0) {
-                AbstractPlayer player = AbstractPlayer.getPlayer((Player) executor);
+                NebulaPlayer player = NebulaPlayer.getPlayer((Player) executor);
 
                 this.openGUI(player, player.player);
             } else if (executor.hasPermission("Nebula.chatcolor.others")) {
-                AbstractPlayer player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
+                NebulaPlayer player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
 
                 if (player == null) {
                     executor.sendMessage(NebulaCore.getLang("error.never.played"));
@@ -47,7 +47,7 @@ public class CommandChatColor extends BaseCommand {
         }
     }
 
-    private void openGUI(AbstractPlayer player, Player viewer) {
+    private void openGUI(NebulaPlayer player, Player viewer) {
         GUIWindow window = new GUIWindow(new StringBuilder().append("ChatColor GUI - ").append(player.getName()).toString(), 3);
         ChatColorConfiguration color = new ChatColorConfiguration(player.getChatColor());
 

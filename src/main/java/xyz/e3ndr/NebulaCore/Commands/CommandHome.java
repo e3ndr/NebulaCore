@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandHome extends BaseCommand {
@@ -18,7 +18,7 @@ public class CommandHome extends BaseCommand {
         if (isConsole) {
             executor.sendMessage("Only players can execute this command.");
         } else {
-            AbstractPlayer player = AbstractPlayer.getPlayer((Player) executor);
+            NebulaPlayer player = NebulaPlayer.getPlayer((Player) executor);
 
             if (alias.equalsIgnoreCase("home")) {
                 if (executor.hasPermission("Nebula.home")) {
@@ -35,7 +35,7 @@ public class CommandHome extends BaseCommand {
                         this.teleportHome(player, player.player, args[0]);
                     } else {
                         if (executor.hasPermission("Nebula.home.others")) {
-                            player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
+                            player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
 
                             if (player == null) {
                                 executor.sendMessage(NebulaCore.getLang("error.never.played"));
@@ -54,7 +54,7 @@ public class CommandHome extends BaseCommand {
                     this.listHomes(player, executor);
                 } else {
                     if (executor.hasPermission("Nebula.home.others")) {
-                        player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
+                        player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
 
                         if (player == null) {
                             executor.sendMessage(NebulaCore.getLang("error.never.played"));
@@ -71,7 +71,7 @@ public class CommandHome extends BaseCommand {
                     if (args.length == 1) home = args[0];
                     this.setHome(player, (Player) executor, home);
                 } else {
-                    player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
+                    player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
 
                     if (player == null) {
                         executor.sendMessage(NebulaCore.getLang("error.never.played"));
@@ -83,7 +83,7 @@ public class CommandHome extends BaseCommand {
                 if (args.length == 1) {
                     this.delHome(player, executor, args[0]);
                 } else {
-                    player = AbstractPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
+                    player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
 
                     if (player == null) {
                         executor.sendMessage(NebulaCore.getLang("error.never.played"));
@@ -95,7 +95,7 @@ public class CommandHome extends BaseCommand {
         }
     }
 
-    private void setHome(AbstractPlayer player, Player executor, String home) {
+    private void setHome(NebulaPlayer player, Player executor, String home) {
         if (executor.hasPermission("Nebula.home.set")) {
             if ((executor != player.player) && !executor.hasPermission("Nebula.home.set.others")) {
                 executor.sendMessage(NebulaCore.getLang("error.perm").replace("%perm%", "Nebula.home.set.others"));
@@ -108,7 +108,7 @@ public class CommandHome extends BaseCommand {
         }
     }
 
-    private void delHome(AbstractPlayer player, CommandSender executor, String home) {
+    private void delHome(NebulaPlayer player, CommandSender executor, String home) {
         if (executor.hasPermission("Nebula.home.delete")) {
             if ((executor != player.player) && !executor.hasPermission("Nebula.home.delete.others")) {
                 executor.sendMessage(NebulaCore.getLang("error.perm").replace("%perm%", "Nebula.home.delete.others"));
@@ -127,7 +127,7 @@ public class CommandHome extends BaseCommand {
         }
     }
 
-    private void teleportHome(AbstractPlayer player, Player executor, String home) {
+    private void teleportHome(NebulaPlayer player, Player executor, String home) {
         Location loc = player.getHomes().get(home);
 
         if (loc == null) {
@@ -138,7 +138,7 @@ public class CommandHome extends BaseCommand {
         }
     }
 
-    private void listHomes(AbstractPlayer player, CommandSender executor) {
+    private void listHomes(NebulaPlayer player, CommandSender executor) {
         if (executor.hasPermission("Nebula.home.list")) {
             if ((executor != player.player) && !executor.hasPermission("Nebula.home.list.others")) {
                 executor.sendMessage(NebulaCore.getLang("error.perm").replace("%perm%", "Nebula.home.list.others"));
@@ -172,9 +172,9 @@ public class CommandHome extends BaseCommand {
 
         if (!isConsole) {
             if (alias.equalsIgnoreCase("home") && executor.hasPermission("Nebula.home") && (args.length == 1)) {
-                ret.addAll(AbstractPlayer.getPlayer((Player) executor).getHomes().keySet());
+                ret.addAll(NebulaPlayer.getPlayer((Player) executor).getHomes().keySet());
             } else if (alias.equalsIgnoreCase("delhome") && executor.hasPermission("Nebula.home.delete") && (args.length == 1)) {
-                ret.addAll(AbstractPlayer.getPlayer((Player) executor).getHomes().keySet());
+                ret.addAll(NebulaPlayer.getPlayer((Player) executor).getHomes().keySet());
             }
         }
 

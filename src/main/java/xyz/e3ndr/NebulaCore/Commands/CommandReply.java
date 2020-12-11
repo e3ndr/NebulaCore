@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandReply extends BaseCommand {
@@ -18,8 +18,8 @@ public class CommandReply extends BaseCommand {
             } else if (args.length == 0) {
                 executor.sendMessage(NebulaCore.getLang("message.error.specify.message"));
             } else {
-                AbstractPlayer sender = AbstractPlayer.getPlayer((Player) executor);
-                AbstractPlayer last = sender.lastReceived;
+                NebulaPlayer sender = NebulaPlayer.getPlayer((Player) executor);
+                NebulaPlayer last = sender.lastReceived;
 
                 if (last == null) {
                     executor.sendMessage(NebulaCore.getLang("message.error.reply"));

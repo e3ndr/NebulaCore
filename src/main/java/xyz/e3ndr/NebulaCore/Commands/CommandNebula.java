@@ -13,7 +13,7 @@ import org.json.simple.JSONObject;
 
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.NebulaPlayer;
+import xyz.e3ndr.NebulaCore.PlayerImpl;
 import xyz.e3ndr.NebulaCore.api.Callback;
 import xyz.e3ndr.NebulaCore.api.Util;
 import xyz.e3ndr.NebulaCore.modules.AbstractModule;
@@ -59,7 +59,7 @@ public class CommandNebula extends BaseCommand {
                     OfflinePlayer offline = Bukkit.getOfflinePlayer(args[1]);
 
                     try {
-                        NebulaPlayer.generate(offline.getUniqueId());
+                        PlayerImpl.generate(offline.getUniqueId());
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

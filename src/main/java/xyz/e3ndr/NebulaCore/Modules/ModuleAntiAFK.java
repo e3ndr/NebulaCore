@@ -13,7 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 
 public class ModuleAntiAFK extends AbstractModule implements Listener, Runnable {
     private int schedulerID = -1;
@@ -24,9 +24,12 @@ public class ModuleAntiAFK extends AbstractModule implements Listener, Runnable 
 
     @Override
     protected void init(NebulaCore instance) {
-        this.enabled = true;
         File config = new File(NebulaCore.dir, "anti-afk-config.yml");
-        if (!config.exists()) instance.saveResource(config, "anti-afk-config.yml");
+
+        if (!config.exists()) {
+            instance.saveResource(config, "anti-afk-config.yml");
+        }
+
         YamlConfiguration yml = YamlConfiguration.loadConfiguration(config);
 
         this.movement = yml.getBoolean("movement", true);
@@ -36,10 +39,12 @@ public class ModuleAntiAFK extends AbstractModule implements Listener, Runnable 
         this.schedulerID = Bukkit.getScheduler().scheduleSyncRepeatingTask(instance, this, 40, 40);
 
         Bukkit.getPluginManager().registerEvents(this, instance);
+
+        this.enabled = true;
     }
 
     private void noAfk(Player p) {
-        AbstractPlayer player = AbstractPlayer.getPlayer(p);
+        NebulaPlayer player = NebulaPlayer.getPlayer(p);
 
         player.lastEvent = System.currentTimeMillis();
     }
@@ -48,7 +53,7 @@ public class ModuleAntiAFK extends AbstractModule implements Listener, Runnable 
     public void run() {
         if (this.enabled) {
             long current = System.currentTimeMillis();
-            for (AbstractPlayer player : AbstractPlayer.getOnline()) {
+            for (NebulaPlayer player : NebulaPlayer.getOnline()) {
                 long last = player.lastEvent;
 
                 if ((last + timeout) < current) {

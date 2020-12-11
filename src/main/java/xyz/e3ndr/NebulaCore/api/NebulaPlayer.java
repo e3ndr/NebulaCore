@@ -11,27 +11,27 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-public abstract class AbstractPlayer {
-    private static HashMap<UUID, AbstractPlayer> playerCache = new HashMap<>();
-    private static AbstractPlayer provider;
+public abstract class NebulaPlayer {
+    private static Map<UUID, NebulaPlayer> playerCache = new HashMap<>();
+    private static NebulaPlayer provider;
 
     protected String chatColor = "";
     protected String chatTag = "";
-    protected HashMap<String, Location> homes = new HashMap<>();
+    protected Map<String, Location> homes = new HashMap<>();
     protected double balance = 0;
     protected String nickname = null;
     public UUID uuid;
     public Player player;
     public long lastEvent = System.currentTimeMillis();
     public boolean messagingEnabled = true;
-    public ArrayList<UUID> ignoredPlayers = new ArrayList<>();
-    public AbstractPlayer lastReceived;
+    public List<UUID> ignoredPlayers = new ArrayList<>();
+    public NebulaPlayer lastReceived;
 
-    protected AbstractPlayer() {
+    protected NebulaPlayer() {
         if (provider == null) provider = this;
     }
 
-    protected AbstractPlayer(Player player) {
+    protected NebulaPlayer(Player player) {
         this.uuid = player.getUniqueId();
 
         if (playerCache.containsKey(this.uuid)) {
@@ -43,7 +43,7 @@ public abstract class AbstractPlayer {
         }
     }
 
-    protected AbstractPlayer(UUID uuid) {
+    protected NebulaPlayer(UUID uuid) {
         this.uuid = uuid;
         this.load();
     }
@@ -59,22 +59,26 @@ public abstract class AbstractPlayer {
         }
     }
 
-    public HashMap<String, Location> getHomes() {
-        HashMap<String, Location> homes = new HashMap<>();
+    public Map<String, Location> getHomes() {
+        Map<String, Location> homes = new HashMap<>();
         Location bed = (this.player != null) ? this.player.getBedSpawnLocation() : null;
 
         if (bed != null) {
             homes.put("bed", bed);
         }
 
-        for (Map.Entry<String, Location> entry : this.homes.entrySet()) homes.put(entry.getKey(), entry.getValue());
+        homes.putAll(this.homes);
 
         return homes;
     }
 
     public void setHome(String name, Location loc) {
-        if (this.homes.containsKey(name)) this.homes.remove(name);
+        if (this.homes.containsKey(name)) {
+            this.homes.remove(name);
+        }
+
         this.homes.put(name.equalsIgnoreCase("bed") ? name + "_" : name, loc);
+
         this.save();
     }
 
@@ -87,16 +91,16 @@ public abstract class AbstractPlayer {
     }
 
     public void setBalance(double amount) {
-        this.balance = Util.makePositive(amount);
+        this.balance = Math.abs(amount);
         this.save();
     }
 
     public boolean hasMoney(double amount) {
-        return (amount < 0) ? false : (this.getBalance() >= amount);
+        return Math.abs(this.getBalance()) >= amount;
     }
 
     public void addMoney(double amount) {
-        this.balance += Util.makePositive(amount);
+        this.balance += Math.abs(amount);
         this.save();
     }
 
@@ -110,7 +114,7 @@ public abstract class AbstractPlayer {
         }
     }
 
-    public int sendMessage(AbstractPlayer sender, String message) {
+    public int sendMessage(NebulaPlayer sender, String message) {
         if (this.player == null) {
             return 3;
         } else if (sender == null) {
@@ -121,8 +125,8 @@ public abstract class AbstractPlayer {
                 return -1;
             } else {
                 this.lastReceived = sender;
-                this.sendMessage(AbstractLang.getLang("message.receive", sender.uuid, false).replace("%message%", message));
-                sender.sendMessage(AbstractLang.getLang("message.send", sender.uuid, false).replace("%message%", message));
+                this.sendMessage(NebulaLang.getLang("message.receive", sender.uuid, false).replace("%message%", message));
+                sender.sendMessage(NebulaLang.getLang("message.send", sender.uuid, false).replace("%message%", message));
                 return 0;
             }
         } else {
@@ -182,12 +186,12 @@ public abstract class AbstractPlayer {
 
     public abstract void save();
 
-    protected abstract AbstractPlayer getPlayer0(Player player);
+    protected abstract NebulaPlayer getPlayer0(Player player);
 
-    protected abstract AbstractPlayer getOfflinePlayer0(UUID uuid);
+    protected abstract NebulaPlayer getOfflinePlayer0(UUID uuid);
 
-    public static AbstractPlayer getPlayer(Player player) {
-        AbstractPlayer ret = playerCache.get(player.getUniqueId());
+    public static NebulaPlayer getPlayer(Player player) {
+        NebulaPlayer ret = playerCache.get(player.getUniqueId());
 
         if (ret == null) {
             ret = provider.getPlayer0(player);
@@ -196,33 +200,33 @@ public abstract class AbstractPlayer {
         return ret;
     }
 
-    public static AbstractPlayer getOfflinePlayer(UUID uuid) {
-        AbstractPlayer ret = playerCache.get(uuid);
+    public static NebulaPlayer getOfflinePlayer(UUID uuid) {
+        NebulaPlayer ret = playerCache.get(uuid);
 
         return (ret == null) ? provider.getOfflinePlayer0(uuid) : ret;
     }
 
-    public static AbstractPlayer getPlayer(String name) {
+    public static NebulaPlayer getPlayer(String name) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             String username = ChatColor.stripColor(player.getName()).replace(" ", "^");
             String displayname = ChatColor.stripColor(player.getDisplayName()).replace(" ", "^");
 
-            if (username.equalsIgnoreCase(name) || displayname.equalsIgnoreCase(name)) return AbstractPlayer.getPlayer(player);
+            if (username.equalsIgnoreCase(name) || displayname.equalsIgnoreCase(name)) return NebulaPlayer.getPlayer(player);
         }
 
         return null;
     }
 
-    public static List<AbstractPlayer> getOnline() {
+    public static List<NebulaPlayer> getOnline() {
         return new ArrayList<>(playerCache.values());
     }
 
-    public static AbstractPlayer getPlayerFromUUID(UUID uuid) {
+    public static NebulaPlayer getPlayerFromUUID(UUID uuid) {
         return getPlayer(Bukkit.getPlayer(uuid));
     }
 
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof AbstractPlayer) ? ((obj == this) ? true : ((AbstractPlayer) obj).uuid.equals(this.uuid)) : false;
+        return (obj instanceof NebulaPlayer) ? ((obj == this) ? true : ((NebulaPlayer) obj).uuid.equals(this.uuid)) : false;
     }
 }

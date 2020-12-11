@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandNick extends BaseCommand {
@@ -16,7 +16,7 @@ public class CommandNick extends BaseCommand {
         if (isConsole) {
             executor.sendMessage("Console cannot execute this command.");
         } else if (executor.hasPermission("Nebula.nick")) {
-            AbstractPlayer player = AbstractPlayer.getPlayer((Player) executor);
+            NebulaPlayer player = NebulaPlayer.getPlayer((Player) executor);
 
             if (args.length == 0) {
                 player.player.sendMessage(NebulaCore.getLang("error.specify.name", player.uuid));

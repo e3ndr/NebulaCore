@@ -15,7 +15,7 @@ import org.bukkit.plugin.Plugin;
 import net.milkbowl.vault.economy.AbstractEconomy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.NebulaSettings;
 
 public class VaultEcoHook extends AbstractEconomy {
@@ -57,17 +57,17 @@ public class VaultEcoHook extends AbstractEconomy {
     // Actual API
     @Override
     public double getBalance(String playerName) {
-        return AbstractPlayer.getPlayer(playerName).getBalance();
+        return NebulaPlayer.getPlayer(playerName).getBalance();
     }
 
     @Override
     public boolean has(String playerName, double amount) {
-        return AbstractPlayer.getPlayer(playerName).hasMoney(amount);
+        return NebulaPlayer.getPlayer(playerName).hasMoney(amount);
     }
 
     @Override
     public EconomyResponse withdrawPlayer(String playerName, double amount) {
-        AbstractPlayer player = AbstractPlayer.getPlayer(playerName);
+        NebulaPlayer player = NebulaPlayer.getPlayer(playerName);
         boolean success = player.takeMoney(amount);
 
         return new EconomyResponse(amount, player.getBalance(), success ? ResponseType.SUCCESS : ResponseType.FAILURE, playerName);
@@ -75,7 +75,7 @@ public class VaultEcoHook extends AbstractEconomy {
 
     @Override
     public EconomyResponse depositPlayer(String playerName, double amount) {
-        AbstractPlayer player = AbstractPlayer.getPlayer(playerName);
+        NebulaPlayer player = NebulaPlayer.getPlayer(playerName);
 
         player.addMoney(amount);
 

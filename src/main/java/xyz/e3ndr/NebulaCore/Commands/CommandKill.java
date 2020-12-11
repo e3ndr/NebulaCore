@@ -6,8 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandKill extends BaseCommand {
@@ -18,7 +17,7 @@ public class CommandKill extends BaseCommand {
         if (args.length == 0) {
             commandSuicide.onCommand(executor, alias, args, isConsole);
         } else {
-            AbstractPlayer target = NebulaPlayer.getPlayer(args[0]);
+            NebulaPlayer target = NebulaPlayer.getPlayer(args[0]);
 
             if (!isConsole && (target != null) && target.uuid.equals(((Player) executor).getUniqueId())) {
                 commandSuicide.onCommand(executor, alias, args, isConsole);

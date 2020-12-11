@@ -2,19 +2,19 @@ package xyz.e3ndr.NebulaCore;
 
 import java.util.UUID;
 
-import xyz.e3ndr.NebulaCore.api.AbstractLang;
+import xyz.e3ndr.NebulaCore.api.NebulaLang;
 
 public class NebulaProvider {
 
     public static void init() {
-        new NebulaPlayer();
+        new PlayerImpl();
         new NebulaLangProvider();
 
     }
 
 }
 
-class NebulaLangProvider extends AbstractLang {
+class NebulaLangProvider extends NebulaLang {
 
     protected NebulaLangProvider() {
         super();

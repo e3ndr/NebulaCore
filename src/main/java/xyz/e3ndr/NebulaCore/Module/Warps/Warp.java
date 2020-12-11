@@ -3,12 +3,13 @@ package xyz.e3ndr.NebulaCore.module.warps;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 
 public class Warp {
-    private static HashMap<String, Warp> warps = new HashMap<>();
+    private static Map<String, Warp> warps = new HashMap<>();
     public String name;
     public String perm;
     public Location loc;

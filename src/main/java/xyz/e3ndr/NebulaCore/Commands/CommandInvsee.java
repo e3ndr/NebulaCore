@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandInvsee extends BaseCommand {
@@ -16,7 +16,7 @@ public class CommandInvsee extends BaseCommand {
             if (isConsole) {
                 executor.sendMessage("Only players can execute this command.");
             } else {
-                AbstractPlayer player = AbstractPlayer.getPlayer(args[0]);
+                NebulaPlayer player = NebulaPlayer.getPlayer(args[0]);
 
                 if (player == null) {
                     executor.sendMessage(NebulaCore.getLang("error.player.offline"));

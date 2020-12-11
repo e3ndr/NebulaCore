@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandFly extends BaseCommand {
@@ -25,7 +25,7 @@ public class CommandFly extends BaseCommand {
                     player.sendMessage(NebulaCore.getLang("fly-fly", player).replace("%fly_uppercase%", flyString).replace("%fly_lowercase%", flyString.toLowerCase()));
                 }
             } else if (executor.hasPermission("Nebula.fly.others")) {
-                AbstractPlayer player = AbstractPlayer.getPlayer(args[0]);
+                NebulaPlayer player = NebulaPlayer.getPlayer(args[0]);
 
                 if (player == null) {
                     executor.sendMessage(NebulaCore.getLang("error.player.offline"));

@@ -7,7 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandBroadcast extends BaseCommand {
     @Override
@@ -16,7 +15,7 @@ public class CommandBroadcast extends BaseCommand {
             if (args.length == 0) {
                 executor.sendMessage(NebulaCore.getLang("message.error.specify.message"));
             } else {
-                String message = NebulaCore.getLang("broadcast", isConsole ? null : ((Player) executor).getUniqueId(), false).replace("%message%", Util.stringify(args, 0));
+                String message = NebulaCore.getLang("broadcast", isConsole ? null : ((Player) executor).getUniqueId(), false).replace("%message%", String.join(" ", args));
                 Bukkit.getServer().broadcastMessage(message);
             }
         } else {

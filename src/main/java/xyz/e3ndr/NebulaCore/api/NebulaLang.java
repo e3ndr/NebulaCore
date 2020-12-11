@@ -2,10 +2,10 @@ package xyz.e3ndr.NebulaCore.api;
 
 import java.util.UUID;
 
-public abstract class AbstractLang {
-    private static AbstractLang provider;
+public abstract class NebulaLang {
+    private static NebulaLang provider;
 
-    protected AbstractLang() {
+    protected NebulaLang() {
         if (provider == null) provider = this;
     }
 

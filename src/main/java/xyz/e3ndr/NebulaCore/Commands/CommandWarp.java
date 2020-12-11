@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 import xyz.e3ndr.NebulaCore.module.warps.AbstractWarpStorage;
 import xyz.e3ndr.NebulaCore.module.warps.Warp;
@@ -62,7 +62,7 @@ public class CommandWarp extends BaseCommand {
 
                             if (args.length > 1) {
                                 if (player.hasPermission("Nebula.warps.warp.others")) {
-                                    AbstractPlayer neb = AbstractPlayer.getPlayer(args[1]);
+                                    NebulaPlayer neb = NebulaPlayer.getPlayer(args[1]);
 
                                     if (neb == null) {
                                         player.sendMessage(NebulaCore.getLang("error.player.offline", player).replace("%player_displayname%", args[1]).replace("%player_username%", args[1]));

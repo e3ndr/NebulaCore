@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandGamemode extends BaseCommand {
@@ -59,7 +59,7 @@ public class CommandGamemode extends BaseCommand {
                 this.gamemode(args[0], executor, player);
             }
         } else if ((args.length > 1) && executor.hasPermission("Nebula.gamemode.others")) {
-            AbstractPlayer player = AbstractPlayer.getPlayer(args[1]);
+            NebulaPlayer player = NebulaPlayer.getPlayer(args[1]);
 
             if (player == null) {
                 executor.sendMessage(NebulaCore.getLang("error.player.offline"));

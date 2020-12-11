@@ -34,7 +34,6 @@ public class ChatColorConfiguration {
     }
 
     public static ChatColor getColor(ItemStack item) {
-
         if (itemEquals(item, XMaterial.RED_WOOL)) {
             return ChatColor.DARK_RED;
         } else if (itemEquals(item, XMaterial.RED_STAINED_GLASS)) {

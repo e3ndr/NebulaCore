@@ -3,7 +3,25 @@ package xyz.e3ndr.NebulaCore.modules;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.commands.*;
+import xyz.e3ndr.NebulaCore.commands.CommandBroadcast;
+import xyz.e3ndr.NebulaCore.commands.CommandClearChat;
+import xyz.e3ndr.NebulaCore.commands.CommandExtinguish;
+import xyz.e3ndr.NebulaCore.commands.CommandFeed;
+import xyz.e3ndr.NebulaCore.commands.CommandFly;
+import xyz.e3ndr.NebulaCore.commands.CommandGamemode;
+import xyz.e3ndr.NebulaCore.commands.CommandHeal;
+import xyz.e3ndr.NebulaCore.commands.CommandHelp;
+import xyz.e3ndr.NebulaCore.commands.CommandInvsee;
+import xyz.e3ndr.NebulaCore.commands.CommandKill;
+import xyz.e3ndr.NebulaCore.commands.CommandList;
+import xyz.e3ndr.NebulaCore.commands.CommandMessage;
+import xyz.e3ndr.NebulaCore.commands.CommandNebula;
+import xyz.e3ndr.NebulaCore.commands.CommandPing;
+import xyz.e3ndr.NebulaCore.commands.CommandRealname;
+import xyz.e3ndr.NebulaCore.commands.CommandReply;
+import xyz.e3ndr.NebulaCore.commands.CommandSuicide;
+import xyz.e3ndr.NebulaCore.commands.CommandTeleport;
+import xyz.e3ndr.NebulaCore.commands.CommandTrash;
 
 public class ModuleBase extends AbstractModule {
 
@@ -14,7 +32,7 @@ public class ModuleBase extends AbstractModule {
     @Override
     public void start(YamlConfiguration yml, NebulaCore instance) {
         this.init(instance); // Cant be disabled
-        enabled = true;
+        this.enabled = true;
     }
 
     @Override

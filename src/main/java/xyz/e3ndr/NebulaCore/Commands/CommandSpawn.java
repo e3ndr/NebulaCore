@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 import xyz.e3ndr.NebulaCore.module.warps.Warp;
 
@@ -27,7 +27,7 @@ public class CommandSpawn extends BaseCommand {
                     spawn(player);
                 }
             } else if (executor.hasPermission("Nebula.spawn.others")) {
-                AbstractPlayer player = AbstractPlayer.getPlayer(args[0]);
+                NebulaPlayer player = NebulaPlayer.getPlayer(args[0]);
 
                 if (player == null) {
                     executor.sendMessage(NebulaCore.getLang("error.player.offline"));

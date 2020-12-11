@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
 
 public class CommandSmite extends BaseCommand {
@@ -31,7 +31,7 @@ public class CommandSmite extends BaseCommand {
                     player.getWorld().strikeLightning(player.getLastTwoTargetBlocks(filter, 100).get(0).getLocation());
                 }
             } else {
-                AbstractPlayer player = AbstractPlayer.getPlayer(args[0]);
+                NebulaPlayer player = NebulaPlayer.getPlayer(args[0]);
 
                 if (player == null) {
                     executor.sendMessage(NebulaCore.getLang("error.player.offline"));

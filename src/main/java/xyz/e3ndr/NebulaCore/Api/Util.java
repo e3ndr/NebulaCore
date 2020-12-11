@@ -1,6 +1,7 @@
 package xyz.e3ndr.NebulaCore.api;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -9,15 +10,18 @@ import org.bukkit.entity.Player;
 
 public class Util {
 
-    public static ArrayList<String> getPlayerNames() {
-        ArrayList<String> ret = new ArrayList<>();
+    public static List<String> getPlayerNames() {
+        List<String> ret = new ArrayList<>();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             String name = ChatColor.stripColor(player.getName()).replace(" ", "^");
             String displayname = ChatColor.stripColor(player.getDisplayName()).replace(" ", "^");
 
             ret.add(name);
-            if (!displayname.equalsIgnoreCase(name)) ret.add(displayname);
+
+            if (!displayname.equalsIgnoreCase(name)) {
+                ret.add(displayname);
+            }
         }
 
         return ret;
@@ -51,36 +55,22 @@ public class Util {
         }
     }
 
-    public static int makePositive(int value) {
-        return (value < 0) ? -value : value;
-    }
-
-    public static double makePositive(double value) {
-        return (value < 0) ? -value : value;
-    }
-
-    public static float makePositive(float value) {
-        return (value < 0) ? -value : value;
-    }
-
-    public static String stringify(String[] array, int startingPos) {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = startingPos; i != array.length; i++) {
-            String s = array[i];
-            sb.append(" ");
-            sb.append(s);
-        }
-
-        return sb.toString().replaceFirst(" ", "");
-    }
-
     public static boolean inRange(int value, int min, int max) {
         return (value >= min) && (value <= max);
     }
 
     public static int inRangeOrDefault(int value, int min, int max, int def) {
         return inRange(value, min, max) ? value : def;
+    }
+
+    public static String stringify(String[] args, int start) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = start; i < args.length; i++) {
+            sb.append(' ').append(args[i]);
+        }
+
+        return sb.substring(1);
     }
 
 }

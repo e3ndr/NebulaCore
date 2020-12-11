@@ -18,7 +18,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.google.common.io.Files;
 
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
 import xyz.e3ndr.NebulaCore.api.NebulaSettings;
 import xyz.e3ndr.NebulaCore.gui.GUIListener;
 import xyz.e3ndr.NebulaCore.gui.GUIWindow;
@@ -33,7 +32,7 @@ import xyz.e3ndr.NebulaCore.modules.ModuleFun;
 import xyz.e3ndr.NebulaCore.modules.ModuleHomes;
 import xyz.e3ndr.NebulaCore.modules.ModuleSpawn;
 import xyz.e3ndr.NebulaCore.modules.ModuleWarps;
-import xyz.e3ndr.NebulaCore.placeholders.AbstractPlaceholders;
+import xyz.e3ndr.NebulaCore.placeholders.providers.NebulaPlaceholders;
 
 public class NebulaCore extends JavaPlugin {
     public ArrayList<AbstractModule> modules = new ArrayList<>();
@@ -57,7 +56,7 @@ public class NebulaCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
         NebulaProvider.init();
         this.placeholderAPI = Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI");
-        AbstractPlaceholders.init();
+        NebulaPlaceholders.init();
 
         log("Loading Configs...");
         this.loadConfigs();
@@ -84,7 +83,7 @@ public class NebulaCore extends JavaPlugin {
         this.loadModules();
 
         Bukkit.getPluginManager().registerEvents(new EventListener(), this);
-        for (Player player : Bukkit.getOnlinePlayers()) AbstractPlayer.getPlayer(player); // Reload protection
+        for (Player player : Bukkit.getOnlinePlayers()) PlayerImpl.getPlayer(player); // Reload protection
 
         long finish = System.currentTimeMillis();
         log(new StringBuilder().append("Done! Took ").append(finish - start).append("ms to enable!"));
@@ -105,7 +104,7 @@ public class NebulaCore extends JavaPlugin {
     private void loadDatabase() {
         this.connect();
 
-        NebulaPlayer.init(this.conn);
+        PlayerImpl.init(this.conn);
         new SQLiteWarpStorage().init(); // Required as /spawn and /warp use this.
 
     }
@@ -173,7 +172,7 @@ public class NebulaCore extends JavaPlugin {
     @Override
     public void onDisable() {
         ModuleCustomRecipes.removeRecipes();
-        for (Player player : Bukkit.getOnlinePlayers()) AbstractPlayer.getPlayer(player).offline();
+        for (Player player : Bukkit.getOnlinePlayers()) PlayerImpl.getPlayer(player).offline();
         try {
             this.conn.close();
         } catch (SQLException e) {
@@ -204,7 +203,7 @@ public class NebulaCore extends JavaPlugin {
         if (prefix) sb.append(instance.langPrefix);
         sb.append(instance.lang.getString(key.replace('.', '-'), "&c&o" + key));
 
-        return ChatColor.translateAlternateColorCodes('&', AbstractPlaceholders.instance.format(uuid, sb.toString()));
+        return ChatColor.translateAlternateColorCodes('&', NebulaPlaceholders.instance.format(uuid, sb.toString()));
     }
 
     public static void log(Object log) {

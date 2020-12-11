@@ -16,27 +16,27 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import xyz.e3ndr.NebulaCore.api.AbstractPlayer;
+import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.NebulaSettings;
 import xyz.e3ndr.NebulaCore.commands.CommandSpawn;
 
-public class NebulaPlayer extends AbstractPlayer {
+public class PlayerImpl extends NebulaPlayer {
     private static Connection conn;
 
-    public NebulaPlayer() {
+    public PlayerImpl() {
         super();
     }
 
-    public NebulaPlayer(Player player) {
+    public PlayerImpl(Player player) {
         super(player);
     }
 
-    public NebulaPlayer(UUID uuid) {
+    public PlayerImpl(UUID uuid) {
         super(uuid);
     }
 
     public static void init(Connection conn) {
-        NebulaPlayer.conn = conn;
+        PlayerImpl.conn = conn;
 
         String create = "CREATE TABLE IF NOT EXISTS players (\n" + "    uuid text PRIMARY KEY NOT NULL,\n" + "    nickname text,\n" + "    balance real NOT NULL,\n" + "    homes text NOT NULL,\n" + "    chatcolor text NOT NULL,\n" + "    chattag text NOT NULL\n" + ");";
 
@@ -178,12 +178,12 @@ public class NebulaPlayer extends AbstractPlayer {
     }
 
     @Override
-    protected AbstractPlayer getPlayer0(Player player) {
-        return new NebulaPlayer(player);
+    protected NebulaPlayer getPlayer0(Player player) {
+        return new PlayerImpl(player);
     }
 
     @Override
-    protected AbstractPlayer getOfflinePlayer0(UUID uuid) {
+    protected NebulaPlayer getOfflinePlayer0(UUID uuid) {
         String query = "SELECT nickname, balance, homes, chatcolor, chattag FROM players WHERE uuid = ?";
 
         try {
@@ -195,7 +195,7 @@ public class NebulaPlayer extends AbstractPlayer {
             ResultSet rs = p.executeQuery();
 
             if (rs.next()) {
-                return new NebulaPlayer(uuid);
+                return new PlayerImpl(uuid);
             } else {
                 return null;
             }
