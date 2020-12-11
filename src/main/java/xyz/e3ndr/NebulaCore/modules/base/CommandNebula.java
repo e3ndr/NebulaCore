@@ -113,7 +113,6 @@ public class CommandNebula extends BaseCommand {
         if (executor.hasPermission("Nebula.nebula") && (args.length == 1)) {
             ret.add("info");
 
-            if (isConsole) ret.add("banner");
             if (executor.hasPermission("Nebula.nebula.reload")) ret.add("reload");
             if (executor.hasPermission("Nebula.nebula.item")) ret.add("item");
             if (executor.hasPermission("Nebula.nebula.generate")) ret.add("generate");

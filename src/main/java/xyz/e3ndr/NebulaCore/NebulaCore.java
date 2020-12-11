@@ -56,7 +56,8 @@ public class NebulaCore extends JavaPlugin {
         instance = this;
         long start = System.currentTimeMillis();
 
-        log("\n    &fSystem.out.println(Hello world!);\n    &7> Hello world!\n");
+        log("Hello world!");
+        log("");
 
         Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
         NebulaProvider.init();
@@ -65,11 +66,14 @@ public class NebulaCore extends JavaPlugin {
 
         log("Loading Configs...");
         this.loadConfigs();
+        log("");
 
         log("Loading Database...");
         this.loadDatabase();
+        log("");
 
         log("Loading Modules...");
+        log("");
         this.modules.add(new ModuleBase());
         this.modules.add(new ModuleWarps());
         this.modules.add(new ModuleFun());
@@ -84,7 +88,6 @@ public class NebulaCore extends JavaPlugin {
         // this.modules.add(new ModuleCustomCommands());
         // this.modules.add(new ModuleTags());
 
-        log("Enabling modules...");
         this.loadModules();
 
         Bukkit.getPluginManager().registerEvents(new EventListener(), this);
@@ -94,6 +97,7 @@ public class NebulaCore extends JavaPlugin {
         }
 
         long finish = System.currentTimeMillis();
+        log("");
         log(new StringBuilder().append("Done! Took ").append(finish - start).append("ms to enable!"));
     }
 

@@ -23,6 +23,7 @@ public class ModuleEconomy extends AbstractModule {
     protected void init(NebulaCore instance) {
         try {
             instance.getCommand("economy").setExecutor(new CommandEconomy());
+
             if (NebulaSettings.handleEconomy) {
                 Class.forName("net.milkbowl.vault.Vault");
 
@@ -32,10 +33,15 @@ public class ModuleEconomy extends AbstractModule {
 
                 smField.setAccessible(true);
                 ((ServicesManager) smField.get(vault)).register(Economy.class, econ, vault, ServicePriority.Low);
+
                 NebulaCore.log("&aHooked into Vault.");
             }
         } catch (Exception e) {
-            NebulaCore.log("&4Unable to reflect Vault Economy for registration, Nebula will not handle economy.\n&c" + e.getMessage());
+            if (e.getMessage().equals("net.milkbowl.vault.Vault")) {
+                NebulaCore.log("&4Vault is not present (is it enabled?), Nebula will not hook into economy.");
+            } else {
+                NebulaCore.log("&4Unable to reflect Vault Economy for registration, Nebula will not hook into economy.\n&c" + e.getMessage());
+            }
         }
     }
 
