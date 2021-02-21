@@ -10,7 +10,7 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.Inventory;
 
 public class GUIWindow {
-    public static Map<String, GUIWindow> windows = new HashMap<>();
+    private static Map<String, GUIWindow> windows = new HashMap<>();
 
     public Inventory inv;
     public Map<Integer, GUIItem> items;
@@ -48,15 +48,21 @@ public class GUIWindow {
 
     public void refresh() {
         this.refreshing = true;
-        for (HumanEntity he : this.inv.getViewers()) this.show(he);
+
+        for (HumanEntity he : this.inv.getViewers()) {
+            this.show(he);
+        }
+
         this.refreshing = false;
     }
 
-    @SuppressWarnings("deprecation")
     public void unregister() {
         if (!this.refreshing) {
-            windows.remove(this.inv.getTitle());
-            for (HumanEntity he : new ArrayList<>(this.inv.getViewers())) he.closeInventory();
+            for (HumanEntity he : new ArrayList<>(this.inv.getViewers())) {
+                windows.remove(he.getOpenInventory().getTitle());
+                he.closeInventory();
+            }
+
             this.items.clear();
         }
     }
@@ -72,4 +78,11 @@ public class GUIWindow {
             return name;
         }
     }
+
+    public static void close() {
+        for (GUIWindow window : new ArrayList<>(windows.values())) {
+            window.unregister();
+        }
+    }
+
 }

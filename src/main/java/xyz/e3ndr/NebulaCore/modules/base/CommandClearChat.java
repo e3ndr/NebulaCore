@@ -16,7 +16,7 @@ public class CommandClearChat extends BaseCommand {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i != 105; i++) {
-            sb.append("\n");
+            sb.append("\n ");
         }
 
         CLEAR = sb.toString();

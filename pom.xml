@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>xyz.e3ndr</groupId>
 	<artifactId>NebulaCore</artifactId>
-	<version>3</version>
+	<version>4</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -144,8 +144,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.e3ndr</groupId>
-			<artifactId>Consolidate</artifactId>
-			<version>1.1.0</version>
+			<artifactId>ReflectionLib</artifactId>
+			<version>1.0.0</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>

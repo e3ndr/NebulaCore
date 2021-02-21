@@ -27,12 +27,12 @@ public abstract class NebulaPlayer {
     protected String nickname = null;
 
     //@formatter:off
-    protected @NonNull  @Getter         List<UUID> ignoredPlayers = new ArrayList<>();
-    protected           @Getter @Setter long lastEvent = System.currentTimeMillis();
-    protected           @Getter         boolean messagingEnabled = true;
+    protected           @Getter @Setter long         lastEvent        = System.currentTimeMillis();
+    protected @NonNull  @Getter         List<UUID>   ignoredPlayers   = new ArrayList<>();
+    protected           @Getter         boolean      messagingEnabled = true;
     protected @Nullable @Getter @Setter NebulaPlayer lastReceived;
-    protected @Nullable @Getter         Player bukkit;
-    protected @NonNull  @Getter         UUID uuid;
+    protected @Nullable @Getter         Player       bukkit;
+    protected @NonNull  @Getter         UUID         uuid;
     //@formatter:on
 
     protected NebulaPlayer() {

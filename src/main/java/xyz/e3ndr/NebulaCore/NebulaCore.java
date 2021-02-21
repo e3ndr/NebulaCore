@@ -24,6 +24,7 @@ import xyz.e3ndr.NebulaCore.api.NebulaSettings;
 import xyz.e3ndr.NebulaCore.gui.GUIListener;
 import xyz.e3ndr.NebulaCore.gui.GUIWindow;
 import xyz.e3ndr.NebulaCore.modules.AbstractModule;
+import xyz.e3ndr.NebulaCore.modules.ModuleCombat;
 import xyz.e3ndr.NebulaCore.modules.antiafk.ModuleAntiAFK;
 import xyz.e3ndr.NebulaCore.modules.base.ModuleBase;
 import xyz.e3ndr.NebulaCore.modules.chatcolor.ModuleChatColor;
@@ -83,10 +84,8 @@ public class NebulaCore extends JavaPlugin {
         this.modules.add(new ModuleChatColor());
         this.modules.add(new ModuleAntiAFK());
         this.modules.add(new ModuleHomes());
-        // this.modules.add(new ModuleCustomGUIs());
-        // this.modules.add(new ModuleKits());
-        // this.modules.add(new ModuleCustomCommands());
-        // this.modules.add(new ModuleTags());
+        this.modules.add(new ModuleCombat());
+        // TODO the rest
 
         this.loadModules();
 
@@ -198,11 +197,7 @@ public class NebulaCore extends JavaPlugin {
             e.printStackTrace();
         }
 
-        if (GUIWindow.windows != null) {
-            for (GUIWindow window : GUIWindow.windows.values()) {
-                window.unregister();
-            }
-        }
+        GUIWindow.close();
 
         log("Good bye, Thanks for using Nebula!");
         instance = null;

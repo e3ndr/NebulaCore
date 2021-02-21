@@ -8,6 +8,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import xyz.e3ndr.reflectionlib.ReflectionLib;
+
 public class Util {
 
     public static List<String> getPlayerNames() {
@@ -47,9 +49,9 @@ public class Util {
 
     public static int getPing(Player player) {
         try {
-            Object handle = player.getClass().getMethod("getHandle", new Class<?>[0]).invoke(player, new Object[0]);
+            Object handle = ReflectionLib.invokeMethod(player, "getHandle");
 
-            return (int) handle.getClass().getField("ping").get(handle);
+            return ReflectionLib.getValue(handle, "ping");
         } catch (Exception e) {
             return -1;
         }

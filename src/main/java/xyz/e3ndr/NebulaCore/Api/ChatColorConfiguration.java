@@ -1,5 +1,8 @@
 package xyz.e3ndr.NebulaCore.api;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
@@ -8,12 +11,42 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class ChatColorConfiguration {
+    private static final Map<XMaterial, ChatColor> COLORS = new HashMap<>();
+
     private @Nullable @Getter @Setter ChatColor color;
     private @Getter @Setter boolean reset = false;
     private @Getter @Setter boolean italic = false;
     private @Getter @Setter boolean bold = false;
     private @Getter @Setter boolean underline = false;
     private @Getter @Setter boolean strike = false;
+
+    static {
+        COLORS.put(XMaterial.RED_WOOL, ChatColor.DARK_RED);
+        COLORS.put(XMaterial.RED_STAINED_GLASS, ChatColor.RED);
+
+        COLORS.put(XMaterial.GOLD_BLOCK, ChatColor.GOLD);
+        COLORS.put(XMaterial.YELLOW_WOOL, ChatColor.YELLOW);
+
+        COLORS.put(XMaterial.GREEN_WOOL, ChatColor.DARK_GREEN);
+        COLORS.put(XMaterial.LIME_WOOL, ChatColor.GREEN);
+
+        COLORS.put(XMaterial.CYAN_STAINED_GLASS, ChatColor.DARK_AQUA);
+        COLORS.put(XMaterial.CYAN_WOOL, ChatColor.AQUA);
+
+        COLORS.put(XMaterial.BLUE_WOOL, ChatColor.DARK_BLUE);
+        COLORS.put(XMaterial.LIGHT_BLUE_WOOL, ChatColor.BLUE);
+
+        COLORS.put(XMaterial.PINK_WOOL, ChatColor.LIGHT_PURPLE);
+        COLORS.put(XMaterial.MAGENTA_WOOL, ChatColor.DARK_PURPLE);
+
+        COLORS.put(XMaterial.WHITE_WOOL, ChatColor.WHITE);
+        COLORS.put(XMaterial.LIGHT_GRAY_WOOL, ChatColor.GRAY);
+
+        COLORS.put(XMaterial.GRAY_WOOL, ChatColor.DARK_GRAY);
+        COLORS.put(XMaterial.LIGHT_GRAY_WOOL, ChatColor.GRAY);
+
+        COLORS.put(XMaterial.BLACK_WOOL, ChatColor.BLACK);
+    }
 
     public ChatColorConfiguration() {}
 
@@ -34,45 +67,7 @@ public class ChatColorConfiguration {
     }
 
     public void setColorFromItem(ItemStack item) {
-        this.color = getColor(item);
-    }
-
-    public static ChatColor getColor(ItemStack item) {
-        if (itemEquals(item, XMaterial.RED_WOOL)) {
-            return ChatColor.DARK_RED;
-        } else if (itemEquals(item, XMaterial.RED_STAINED_GLASS)) {
-            return ChatColor.RED;
-        } else if (itemEquals(item, XMaterial.GOLD_BLOCK)) {
-            return ChatColor.GOLD;
-        } else if (itemEquals(item, XMaterial.YELLOW_WOOL)) {
-            return ChatColor.YELLOW;
-        } else if (itemEquals(item, XMaterial.GREEN_WOOL)) {
-            return ChatColor.DARK_GREEN;
-        } else if (itemEquals(item, XMaterial.LIME_WOOL)) {
-            return ChatColor.GREEN;
-        } else if (itemEquals(item, XMaterial.CYAN_STAINED_GLASS)) {
-            return ChatColor.DARK_AQUA;
-        } else if (itemEquals(item, XMaterial.CYAN_WOOL)) {
-            return ChatColor.AQUA;
-        } else if (itemEquals(item, XMaterial.BLUE_WOOL)) {
-            return ChatColor.DARK_BLUE;
-        } else if (itemEquals(item, XMaterial.LIGHT_BLUE_WOOL)) {
-            return ChatColor.BLUE;
-        } else if (itemEquals(item, XMaterial.PINK_WOOL)) {
-            return ChatColor.LIGHT_PURPLE;
-        } else if (itemEquals(item, XMaterial.MAGENTA_WOOL)) {
-            return ChatColor.DARK_PURPLE;
-        } else if (itemEquals(item, XMaterial.WHITE_WOOL)) {
-            return ChatColor.WHITE;
-        } else if (itemEquals(item, XMaterial.LIGHT_GRAY_WOOL)) {
-            return ChatColor.GRAY;
-        } else if (itemEquals(item, XMaterial.GRAY_WOOL)) {
-            return ChatColor.DARK_GRAY;
-        } else if (itemEquals(item, XMaterial.BLACK_WOOL)) {
-            return ChatColor.BLACK;
-        } else {
-            return null;
-        }
+        this.color = COLORS.get(XMaterial.matchXMaterial(item));
     }
 
     @SuppressWarnings("deprecation")

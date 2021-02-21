@@ -9,10 +9,9 @@ import org.bukkit.event.inventory.InventoryInteractEvent;
 
 public class GUIListener implements Listener {
 
-    @SuppressWarnings("deprecation")
     @EventHandler
     public void onClick(InventoryClickEvent e) {
-        GUIWindow window = GUIWindow.getWindow(e.getInventory().getTitle());
+        GUIWindow window = GUIWindow.getWindow(e.getView().getTitle());
 
         if (window != null) {
             GUIItem item = window.getItem(e.getSlot());
@@ -24,19 +23,18 @@ public class GUIListener implements Listener {
         }
     }
 
-    @SuppressWarnings("deprecation")
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
-        GUIWindow window = GUIWindow.getWindow(e.getInventory().getTitle());
+        GUIWindow window = GUIWindow.getWindow(e.getView().getTitle());
+
         if (window != null) {
             window.unregister();
         }
     }
 
-    @SuppressWarnings("deprecation")
     @EventHandler
     public void onInteract(InventoryInteractEvent e) {
-        if (GUIWindow.getWindow(e.getInventory().getTitle()) != null) {
+        if (GUIWindow.getWindow(e.getView().getTitle()) != null) {
             e.setResult(Event.Result.DENY);
             e.setCancelled(true);
         }
