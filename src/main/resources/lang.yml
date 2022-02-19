@@ -1,7 +1,7 @@
 # Nebula default configuration, see https://wiki.ess3.net/mc/ for color codes.
 # 
 # Global placeholders (can be used anywhere):
-#               player_username, player_displayname, player_name, player_chatcolor, player_chattag, player_world, player_nickname, player_ping, player_balance 
+#               player_username, player_displayname, player_name, player_chatcolor, player_chattag, player_world, player_ping, player_balance 
 #               online, online_s, online_isAre +  all PlaceHolderAPI placeholders (If present)
 # 
 # player_name follows this format:
@@ -41,8 +41,8 @@ home-page: | # warps. Use | to enable multline text or use \n. This does not use
 
 afk-kick: "&cYou were kicked for being AFK."
 
-message-receive: "&b[%player_displayname%&r&b -> me] &7%message%" # message. This does not use the global prefix.
-message-send: "&b[me -> %player_displayname%&r&b] &7%message%" # message. This does not use the global prefix.
+message-receive: "&b[%player_name%&r&b -> me] &7%message%" # message. This does not use the global prefix.
+message-send: "&b[me -> %player_name%&r&b] &7%message%" # message. This does not use the global prefix.
 message-error-reply: "&4You haven't received a message from anyone."
 message-error-specify-message: "&4Specify a message to send."
 message-error-ignored: "&4You cannot send messages to &c%player_username%&4." # This is used if a player is ignored or if they do not have messaging enabled.

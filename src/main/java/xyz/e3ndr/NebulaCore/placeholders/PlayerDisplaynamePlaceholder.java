@@ -5,7 +5,7 @@ import xyz.e3ndr.nebulacore.api.NebulaPlayer;
 public class PlayerDisplaynamePlaceholder extends AbstractPlaceholder {
 
     public PlayerDisplaynamePlaceholder() {
-        super("player_nickname");
+        super("player_displayname");
     }
 
     @Override
