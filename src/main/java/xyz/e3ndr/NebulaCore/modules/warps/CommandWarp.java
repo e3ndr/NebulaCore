@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.warps;
+package xyz.e3ndr.nebulacore.modules.warps;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.api.Util;
-import xyz.e3ndr.NebulaCore.modules.BaseCommand;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.api.Util;
+import xyz.e3ndr.nebulacore.modules.BaseCommand;
 
 public class CommandWarp extends BaseCommand {
 

@@ -1,14 +1,14 @@
-package xyz.e3ndr.NebulaCore.modules.base;
+package xyz.e3ndr.nebulacore.modules.base;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.api.Util;
-import xyz.e3ndr.NebulaCore.modules.BaseCommand;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.api.Util;
+import xyz.e3ndr.nebulacore.modules.BaseCommand;
 
 public class CommandRealname extends BaseCommand {
 

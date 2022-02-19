@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.base;
+package xyz.e3ndr.nebulacore.modules.base;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,12 +10,12 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.PlayerImpl;
-import xyz.e3ndr.NebulaCore.api.Callback;
-import xyz.e3ndr.NebulaCore.api.Util;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
-import xyz.e3ndr.NebulaCore.modules.BaseCommand;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.PlayerImpl;
+import xyz.e3ndr.nebulacore.api.Callback;
+import xyz.e3ndr.nebulacore.api.Util;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.modules.BaseCommand;
 
 public class CommandNebula extends BaseCommand {
     public static final String AUTHOR = "&dMade with " + ((char) 0x2764) + " by e3ndr.";

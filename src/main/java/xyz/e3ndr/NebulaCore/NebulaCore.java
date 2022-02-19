@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore;
+package xyz.e3ndr.nebulacore;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,22 +20,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.google.common.io.Files;
 
 import lombok.Getter;
-import xyz.e3ndr.NebulaCore.api.NebulaSettings;
-import xyz.e3ndr.NebulaCore.gui.GUIListener;
-import xyz.e3ndr.NebulaCore.gui.GUIWindow;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
-import xyz.e3ndr.NebulaCore.modules.ModuleCombat;
-import xyz.e3ndr.NebulaCore.modules.antiafk.ModuleAntiAFK;
-import xyz.e3ndr.NebulaCore.modules.base.ModuleBase;
-import xyz.e3ndr.NebulaCore.modules.chatcolor.ModuleChatColor;
-import xyz.e3ndr.NebulaCore.modules.customrecipes.ModuleCustomRecipes;
-import xyz.e3ndr.NebulaCore.modules.economy.ModuleEconomy;
-import xyz.e3ndr.NebulaCore.modules.fun.ModuleFun;
-import xyz.e3ndr.NebulaCore.modules.homes.ModuleHomes;
-import xyz.e3ndr.NebulaCore.modules.spawn.ModuleSpawn;
-import xyz.e3ndr.NebulaCore.modules.warps.ModuleWarps;
-import xyz.e3ndr.NebulaCore.modules.warps.SQLiteWarpStorage;
-import xyz.e3ndr.NebulaCore.placeholders.providers.NebulaPlaceholders;
+import xyz.e3ndr.nebulacore.api.NebulaSettings;
+import xyz.e3ndr.nebulacore.gui.GUIListener;
+import xyz.e3ndr.nebulacore.gui.GUIWindow;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.modules.ModuleCombat;
+import xyz.e3ndr.nebulacore.modules.antiafk.ModuleAntiAFK;
+import xyz.e3ndr.nebulacore.modules.base.ModuleBase;
+import xyz.e3ndr.nebulacore.modules.chatcolor.ModuleChatColor;
+import xyz.e3ndr.nebulacore.modules.customrecipes.ModuleCustomRecipes;
+import xyz.e3ndr.nebulacore.modules.economy.ModuleEconomy;
+import xyz.e3ndr.nebulacore.modules.fun.ModuleFun;
+import xyz.e3ndr.nebulacore.modules.homes.ModuleHomes;
+import xyz.e3ndr.nebulacore.modules.spawn.ModuleSpawn;
+import xyz.e3ndr.nebulacore.modules.warps.ModuleWarps;
+import xyz.e3ndr.nebulacore.modules.warps.SQLiteWarpStorage;
+import xyz.e3ndr.nebulacore.placeholders.providers.NebulaPlaceholders;
 
 public class NebulaCore extends JavaPlugin {
     public static final File dir = new File("plugins/Nebula/");

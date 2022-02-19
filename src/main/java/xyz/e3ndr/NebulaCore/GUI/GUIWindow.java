@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.gui;
+package xyz.e3ndr.nebulacore.gui;
 
 import java.util.ArrayList;
 import java.util.HashMap;

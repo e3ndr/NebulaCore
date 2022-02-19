@@ -1,8 +1,8 @@
-package xyz.e3ndr.NebulaCore;
+package xyz.e3ndr.nebulacore;
 
 import java.util.UUID;
 
-import xyz.e3ndr.NebulaCore.api.NebulaLang;
+import xyz.e3ndr.nebulacore.api.NebulaLang;
 
 public class NebulaProvider {
 

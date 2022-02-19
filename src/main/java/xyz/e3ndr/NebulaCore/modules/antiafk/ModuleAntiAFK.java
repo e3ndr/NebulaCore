@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.antiafk;
+package xyz.e3ndr.nebulacore.modules.antiafk;
 
 import java.io.File;
 
@@ -12,9 +12,9 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
 
 public class ModuleAntiAFK extends AbstractModule implements Listener, Runnable {
     private boolean movement = true;

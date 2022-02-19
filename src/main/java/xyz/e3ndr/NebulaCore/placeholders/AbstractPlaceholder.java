@@ -1,10 +1,10 @@
-package xyz.e3ndr.NebulaCore.placeholders;
+package xyz.e3ndr.nebulacore.placeholders;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import lombok.Getter;
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
 
 public abstract class AbstractPlaceholder {
     private static Set<AbstractPlaceholder> placeholders = new HashSet<>();

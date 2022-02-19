@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.api;
+package xyz.e3ndr.nebulacore.api;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import lombok.Getter;
 import lombok.Setter;
-import xyz.e3ndr.NebulaCore.xseries.XMaterial;
+import xyz.e3ndr.nebulacore.xseries.XMaterial;
 
 public class ChatColorConfiguration {
     private static final Map<XMaterial, ChatColor> COLORS = new HashMap<>();

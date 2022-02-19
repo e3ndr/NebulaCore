@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.customrecipes;
+package xyz.e3ndr.nebulacore.modules.customrecipes;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,8 +15,8 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
 
 public class ModuleCustomRecipes extends AbstractModule {
     private static NamespacedKey namespace = new NamespacedKey(NebulaCore.getInstance(), "nebula-recipes");

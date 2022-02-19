@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules;
+package xyz.e3ndr.nebulacore.modules;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
+import xyz.e3ndr.nebulacore.NebulaCore;
 import xyz.e3ndr.reflectionlib.ReflectionLib;
 
 public class ModuleCombat extends AbstractModule implements Listener {

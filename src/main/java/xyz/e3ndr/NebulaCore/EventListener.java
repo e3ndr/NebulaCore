@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore;
+package xyz.e3ndr.nebulacore;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,9 +11,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.api.NebulaSettings;
-import xyz.e3ndr.NebulaCore.modules.spawn.CommandSpawn;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.api.NebulaSettings;
+import xyz.e3ndr.nebulacore.modules.spawn.CommandSpawn;
 
 public class EventListener implements Listener {
 

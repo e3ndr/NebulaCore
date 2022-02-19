@@ -1,10 +1,10 @@
-package xyz.e3ndr.NebulaCore.external;
+package xyz.e3ndr.nebulacore.external;
 
 import org.bukkit.OfflinePlayer;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.placeholders.providers.NebulaPlaceholders;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.placeholders.providers.NebulaPlaceholders;
 
 public class PlaceholderApiExpansion extends PlaceholderExpansion {
 

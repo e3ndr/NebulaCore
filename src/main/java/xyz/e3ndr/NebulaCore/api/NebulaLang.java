@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.api;
+package xyz.e3ndr.nebulacore.api;
 
 import java.util.UUID;
 

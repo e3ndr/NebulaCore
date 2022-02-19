@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.economy;
+package xyz.e3ndr.nebulacore.modules.economy;
 
 import java.lang.reflect.Field;
 
@@ -8,10 +8,10 @@ import org.bukkit.plugin.ServicesManager;
 
 import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.economy.Economy;
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.NebulaSettings;
-import xyz.e3ndr.NebulaCore.external.VaultEcoHook;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.api.NebulaSettings;
+import xyz.e3ndr.nebulacore.external.VaultEcoHook;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
 
 public class ModuleEconomy extends AbstractModule {
 

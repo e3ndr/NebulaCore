@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.gui;
+package xyz.e3ndr.nebulacore.gui;
 
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;

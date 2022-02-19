@@ -1,9 +1,9 @@
-package xyz.e3ndr.NebulaCore.modules.base;
+package xyz.e3ndr.nebulacore.modules.base;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
 
 public class ModuleBase extends AbstractModule {
 

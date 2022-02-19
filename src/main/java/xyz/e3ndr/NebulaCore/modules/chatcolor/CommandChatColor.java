@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.chatcolor;
+package xyz.e3ndr.nebulacore.modules.chatcolor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +12,15 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Consumer;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.api.ChatColorConfiguration;
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.api.Util;
-import xyz.e3ndr.NebulaCore.gui.GUIItem;
-import xyz.e3ndr.NebulaCore.gui.GUIItemStack;
-import xyz.e3ndr.NebulaCore.gui.GUIWindow;
-import xyz.e3ndr.NebulaCore.modules.BaseCommand;
-import xyz.e3ndr.NebulaCore.xseries.XMaterial;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.api.ChatColorConfiguration;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.api.Util;
+import xyz.e3ndr.nebulacore.gui.GUIItem;
+import xyz.e3ndr.nebulacore.gui.GUIItemStack;
+import xyz.e3ndr.nebulacore.gui.GUIWindow;
+import xyz.e3ndr.nebulacore.modules.BaseCommand;
+import xyz.e3ndr.nebulacore.xseries.XMaterial;
 
 public class CommandChatColor extends BaseCommand {
 

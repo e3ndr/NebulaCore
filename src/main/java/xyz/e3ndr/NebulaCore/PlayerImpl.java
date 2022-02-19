@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore;
+package xyz.e3ndr.nebulacore;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,9 +16,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.api.NebulaSettings;
-import xyz.e3ndr.NebulaCore.modules.spawn.CommandSpawn;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.api.NebulaSettings;
+import xyz.e3ndr.nebulacore.modules.spawn.CommandSpawn;
 
 public class PlayerImpl extends NebulaPlayer {
     private static Connection conn;

@@ -1,7 +1,7 @@
-package xyz.e3ndr.NebulaCore.modules.spawn;
+package xyz.e3ndr.nebulacore.modules.spawn;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
 
 public class ModuleSpawn extends AbstractModule {
 

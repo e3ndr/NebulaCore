@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.gui;
+package xyz.e3ndr.nebulacore.gui;
 
 import java.util.Arrays;
 
@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import xyz.e3ndr.NebulaCore.xseries.XMaterial;
+import xyz.e3ndr.nebulacore.xseries.XMaterial;
 
 public class GUIItemStack extends ItemStack {
 

@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.external;
+package xyz.e3ndr.nebulacore.external;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.bukkit.plugin.Plugin;
 import net.milkbowl.vault.economy.AbstractEconomy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.api.NebulaSettings;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.api.NebulaSettings;
 
 public class VaultEcoHook extends AbstractEconomy {
     private Logger log;

@@ -1,7 +1,7 @@
-package xyz.e3ndr.NebulaCore.modules.fun;
+package xyz.e3ndr.nebulacore.modules.fun;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
 
 public class ModuleFun extends AbstractModule {
 

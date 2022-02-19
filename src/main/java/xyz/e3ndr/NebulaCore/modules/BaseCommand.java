@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules;
+package xyz.e3ndr.nebulacore.modules;
 
 import java.util.ArrayList;
 import java.util.List;

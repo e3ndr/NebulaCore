@@ -1,12 +1,12 @@
-package xyz.e3ndr.NebulaCore.placeholders.providers;
+package xyz.e3ndr.nebulacore.placeholders.providers;
 
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.placeholders.AbstractPlaceholder;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.placeholders.AbstractPlaceholder;
 
 public class NebulaPlaceholders {
     public static NebulaPlaceholders instance;

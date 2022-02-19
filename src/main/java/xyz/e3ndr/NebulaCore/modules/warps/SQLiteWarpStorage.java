@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.warps;
+package xyz.e3ndr.nebulacore.modules.warps;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
+import xyz.e3ndr.nebulacore.NebulaCore;
 
 public class SQLiteWarpStorage extends AbstractWarpStorage {
     private Connection conn = NebulaCore.getInstance().getConn();

@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.api;
+package xyz.e3ndr.nebulacore.api;
 
 public class NebulaSettings {
     public static boolean updateTab = true;

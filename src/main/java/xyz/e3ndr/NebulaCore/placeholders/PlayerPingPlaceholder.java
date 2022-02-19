@@ -1,7 +1,7 @@
-package xyz.e3ndr.NebulaCore.placeholders;
+package xyz.e3ndr.nebulacore.placeholders;
 
-import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
-import xyz.e3ndr.NebulaCore.api.Util;
+import xyz.e3ndr.nebulacore.api.NebulaPlayer;
+import xyz.e3ndr.nebulacore.api.Util;
 
 public class PlayerPingPlaceholder extends AbstractPlaceholder {
 

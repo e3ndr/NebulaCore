@@ -53,12 +53,6 @@
 				<configuration>
 					<shadedArtifactAttached>true</shadedArtifactAttached>
 					<finalName>${project.name}</finalName>
-					<relocations>
-						<relocation>
-							<pattern>de.tr7zw.changeme.nbtapi</pattern> <!-- https://github.com/tr7zw/Item-NBT-API -->
-							<shadedPattern>xyz.e3ndr.NebulaCore.nbtapi</shadedPattern>
-						</relocation>
-					</relocations>
 				</configuration>
 			</plugin>
 			<plugin>

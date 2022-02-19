@@ -1,10 +1,10 @@
-package xyz.e3ndr.NebulaCore.modules;
+package xyz.e3ndr.nebulacore.modules;
 
 import java.io.IOException;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
+import xyz.e3ndr.nebulacore.NebulaCore;
 
 public abstract class AbstractModule {
     protected String name;

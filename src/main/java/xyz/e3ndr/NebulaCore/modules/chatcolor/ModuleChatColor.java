@@ -1,7 +1,7 @@
-package xyz.e3ndr.NebulaCore.modules.chatcolor;
+package xyz.e3ndr.nebulacore.modules.chatcolor;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
-import xyz.e3ndr.NebulaCore.modules.AbstractModule;
+import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.modules.AbstractModule;
 
 public class ModuleChatColor extends AbstractModule {
 

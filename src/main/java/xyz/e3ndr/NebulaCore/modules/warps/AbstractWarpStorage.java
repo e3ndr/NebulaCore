@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.warps;
+package xyz.e3ndr.nebulacore.modules.warps;
 
 public abstract class AbstractWarpStorage {
     public static AbstractWarpStorage instance;

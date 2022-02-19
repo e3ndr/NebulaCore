@@ -1,6 +1,6 @@
-package xyz.e3ndr.NebulaCore.modules;
+package xyz.e3ndr.nebulacore.modules;
 
-import xyz.e3ndr.NebulaCore.NebulaCore;
+import xyz.e3ndr.nebulacore.NebulaCore;
 
 public class _ModuleTags extends AbstractModule {
 

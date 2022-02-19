@@ -1,4 +1,4 @@
-package xyz.e3ndr.NebulaCore.modules.warps;
+package xyz.e3ndr.nebulacore.modules.warps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
