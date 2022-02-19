@@ -1,5 +1,5 @@
 name: NebulaCore
-main: xyz.e3ndr.NebulaCore.NebulaCore
+main: xyz.e3ndr.nebulacore.NebulaCore
 version: ${project.version}
 description: A core plugin made by e3ndr.
 author: [e3ndr]
