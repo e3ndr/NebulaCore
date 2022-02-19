@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import xyz.e3ndr.nebulacore.api.NebulaPlayer;
 import xyz.e3ndr.nebulacore.api.NebulaSettings;
-import xyz.e3ndr.nebulacore.modules.spawn.CommandSpawn;
+import xyz.e3ndr.nebulacore.modules.spawn.NebulaCommandSpawn;
 
 public class EventListener implements Listener {
 
@@ -22,7 +22,7 @@ public class EventListener implements Listener {
         NebulaPlayer.getPlayer(e.getPlayer());
 
         if (NebulaSettings.spawnOnJoin) {
-            e.getPlayer().teleport(CommandSpawn.getSpawn());
+            e.getPlayer().teleport(NebulaCommandSpawn.getSpawn());
         }
     }
 
@@ -53,7 +53,7 @@ public class EventListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent e) {
         if (NebulaSettings.handleRespawns) {
-            e.getEntity().teleport(CommandSpawn.getSpawn());
+            e.getEntity().teleport(NebulaCommandSpawn.getSpawn());
         }
     }
 

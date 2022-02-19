@@ -11,7 +11,7 @@ public class ModuleChatColor extends AbstractModule {
 
     @Override
     protected void init(NebulaCore instance) {
-        instance.getCommand("chatcolor").setExecutor(new CommandChatColor());
+        instance.getCommand("chatcolor").setExecutor(new NebulaCommandChatColor());
 
     }
 

@@ -20,7 +20,6 @@ import xyz.e3ndr.nebulacore.modules.BaseCommand;
 public class CommandNebula extends BaseCommand {
     public static final String AUTHOR = "&dMade with " + ((char) 0x2764) + " by e3ndr.";
 
-    @SuppressWarnings("unchecked")
     @Override
     public void onCommand(CommandSender executor, String alias, String[] args, boolean isConsole) {
         if ((args.length > 0) && args[0].equalsIgnoreCase("author")) {

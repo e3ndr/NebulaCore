@@ -11,7 +11,7 @@ public class ModuleWarps extends AbstractModule {
 
     @Override
     protected void init(NebulaCore instance) {
-        instance.getCommand("warp").setExecutor(new CommandWarp());
+        instance.getCommand("warp").setExecutor(new NebulaCommandWarp());
 
     }
 

@@ -26,13 +26,13 @@ public class NebulaCommandSmite extends NebulaCommand {
     }
 
     @Command(name = "smite", permission = "Nebula.smite")
-    public void onCommand_smite(CommandEvent<CommandSender> event) throws CommandPermissionException {
-        if ((event.getExecutor() instanceof ConsoleCommandSender) && event.getArgs().isEmpty()) {
-            event.getExecutor().sendMessage("Only players can execute this command.");
-            return;
-        }
-
+    public void onCommand(CommandEvent<CommandSender> event) throws CommandPermissionException {
         if (event.getArgs().isEmpty()) {
+            if (event.getExecutor() instanceof ConsoleCommandSender) {
+                event.getExecutor().sendMessage("Only players can execute this command.");
+                return;
+            }
+
             Player player = (Player) event.getExecutor();
 
             Location lookingAt = player
@@ -44,21 +44,19 @@ public class NebulaCommandSmite extends NebulaCommand {
                 .getWorld()
                 .strikeLightning(lookingAt);
         } else {
-            if (event.getExecutor().hasPermission("Nebula.smite.others")) {
-                Player player = event.resolve(0, Player.class);
+            this.checkPermission(event, "Nebula.smite.others");
 
-                player.getLocation().getWorld().strikeLightning(player.getLocation());
+            Player player = event.resolve(0, Player.class);
 
-                player.sendMessage(NebulaCore.getLang("smite.smitten", player));
-                event.getExecutor().sendMessage(NebulaCore.getLang("smite.other", player.getUniqueId()));
-            } else {
-                throw new CommandPermissionException("Nebula.smite.others");
-            }
+            player.getLocation().getWorld().strikeLightning(player.getLocation());
+
+            player.sendMessage(NebulaCore.getLang("smite.smitten", player));
+            event.getExecutor().sendMessage(NebulaCore.getLang("smite.other", player.getUniqueId()));
         }
     }
 
     @Command(name = "smite", permission = "Nebula.smite.others", minimumArguments = 1, owner = "complete")
-    public List<String> onComplete_smite(CommandEvent<CommandSender> event) {
+    public List<String> onComplete(CommandEvent<CommandSender> event) {
         if (event.getArgs().size() == 1) {
             return Util.getPlayerNames();
         }

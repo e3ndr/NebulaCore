@@ -6,20 +6,21 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Location;
-import org.bukkit.Material;
+
+import xyz.e3ndr.nebulacore.xseries.XMaterial;
 
 public class Warp {
     private static Map<String, Warp> warps = new HashMap<>();
     public String name;
     public String perm;
     public Location loc;
-    public Material material;
+    public XMaterial material;
 
-    public Warp(String name, String perm, Material material, Location loc) {
+    public Warp(String name, String perm, XMaterial material, Location loc) {
         this(name, perm, loc, material, true);
     }
 
-    public Warp(String name, String perm, Location loc, Material material, boolean isNew) {
+    public Warp(String name, String perm, Location loc, XMaterial material, boolean isNew) {
         this.name = name;
         this.perm = perm;
         this.loc = loc;

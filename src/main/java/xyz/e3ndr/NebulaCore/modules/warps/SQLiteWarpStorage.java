@@ -8,10 +8,10 @@ import java.sql.Statement;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 
 import xyz.e3ndr.nebulacore.NebulaCore;
+import xyz.e3ndr.nebulacore.xseries.XMaterial;
 
 public class SQLiteWarpStorage extends AbstractWarpStorage {
     private Connection conn = NebulaCore.getInstance().getConn();
@@ -31,7 +31,7 @@ public class SQLiteWarpStorage extends AbstractWarpStorage {
             while (rs.next()) {
                 String name = rs.getString("name");
                 String perm = rs.getString("perm");
-                Material material = Material.getMaterial(rs.getString("material"));
+                XMaterial material = XMaterial.valueOf(rs.getString("material"));
                 double x = rs.getDouble("x");
                 double y = rs.getDouble("y");
                 double z = rs.getDouble("z");
@@ -41,7 +41,7 @@ public class SQLiteWarpStorage extends AbstractWarpStorage {
 
                 if (material == null) {
                     NebulaCore.log(new StringBuilder().append("&4Cannot find material &c").append(name).append("&4."));
-                    material = Material.DIRT;
+                    material = XMaterial.DIRT;
                 }
 
                 if (world == null) {

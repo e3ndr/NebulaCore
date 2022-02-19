@@ -99,6 +99,21 @@ public class CommandHome extends BaseCommand {
         }
     }
 
+    @Override
+    public List<String> onTabComplete(CommandSender executor, String alias, String[] args, boolean isConsole) {
+        List<String> ret = new ArrayList<>();
+
+        if (!isConsole) {
+            if (alias.equalsIgnoreCase("home") && executor.hasPermission("Nebula.home") && (args.length == 1)) {
+                ret.addAll(NebulaPlayer.getPlayer((Player) executor).getHomes().keySet());
+            } else if (alias.equalsIgnoreCase("delhome") && executor.hasPermission("Nebula.home.delete") && (args.length == 1)) {
+                ret.addAll(NebulaPlayer.getPlayer((Player) executor).getHomes().keySet());
+            }
+        }
+
+        return ret;
+    }
+
     private void setHome(NebulaPlayer player, Player executor, String home) {
         if (executor.hasPermission("Nebula.home.set")) {
             if ((executor != player.getBukkit()) && !executor.hasPermission("Nebula.home.set.others")) {
@@ -169,21 +184,6 @@ public class CommandHome extends BaseCommand {
         } else {
             executor.sendMessage(NebulaCore.getLang("error.perm").replace("%perm%", "Nebula.home.list"));
         }
-    }
-
-    @Override
-    public List<String> onTabComplete(CommandSender executor, String alias, String[] args, boolean isConsole) {
-        List<String> ret = new ArrayList<>();
-
-        if (!isConsole) {
-            if (alias.equalsIgnoreCase("home") && executor.hasPermission("Nebula.home") && (args.length == 1)) {
-                ret.addAll(NebulaPlayer.getPlayer((Player) executor).getHomes().keySet());
-            } else if (alias.equalsIgnoreCase("delhome") && executor.hasPermission("Nebula.home.delete") && (args.length == 1)) {
-                ret.addAll(NebulaPlayer.getPlayer((Player) executor).getHomes().keySet());
-            }
-        }
-
-        return ret;
     }
 
 }

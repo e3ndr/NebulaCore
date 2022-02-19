@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import lombok.SneakyThrows;
+import xyz.e3ndr.consolidate.CommandEvent;
 import xyz.e3ndr.consolidate.CommandRegistry;
 import xyz.e3ndr.consolidate.PermissionChecker;
 import xyz.e3ndr.consolidate.Resolver;
@@ -118,6 +120,13 @@ public abstract class NebulaCommand implements CommandExecutor, TabCompleter, Co
         }
 
         return null;
+    }
+
+    @SneakyThrows
+    public void checkPermission(CommandEvent<CommandSender> event, String permission) {
+        if (!event.getExecutor().hasPermission(permission)) {
+            throw new CommandPermissionException(permission);
+        }
     }
 
     @Override

@@ -18,7 +18,7 @@ import org.json.simple.parser.JSONParser;
 
 import xyz.e3ndr.nebulacore.api.NebulaPlayer;
 import xyz.e3ndr.nebulacore.api.NebulaSettings;
-import xyz.e3ndr.nebulacore.modules.spawn.CommandSpawn;
+import xyz.e3ndr.nebulacore.modules.spawn.NebulaCommandSpawn;
 
 public class PlayerImpl extends NebulaPlayer {
     private static Connection conn;
@@ -166,7 +166,7 @@ public class PlayerImpl extends NebulaPlayer {
     public Location getSpawn() {
         Location home = this.homes.get("home");
         Location bed = (this.bukkit != null) ? this.bukkit.getBedSpawnLocation() : null;
-        Location spawn = CommandSpawn.getSpawn();
+        Location spawn = NebulaCommandSpawn.getSpawn();
 
         if ((home != null) && NebulaSettings.spawnAtHome) {
             return home;

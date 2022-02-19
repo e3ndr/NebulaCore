@@ -19,10 +19,10 @@ public class ModuleBase extends AbstractModule {
 
     @Override
     protected void init(NebulaCore instance) {
-        instance.getCommand("list").setExecutor(new CommandList());
-        instance.getCommand("realname").setExecutor(new CommandRealname());
-        instance.getCommand("suicide").setExecutor(new CommandSuicide());
-        instance.getCommand("kill").setExecutor(new CommandKill());
+        instance.getCommand("list").setExecutor(new NebulaCommandList());
+        instance.getCommand("realname").setExecutor(new NebulaCommandRealname());
+        instance.getCommand("suicide").setExecutor(new NebulaCommandSuicide());
+        instance.getCommand("kill").setExecutor(new NebulaCommandKill());
         instance.getCommand("invsee").setExecutor(new CommandInvsee());
         instance.getCommand("heal").setExecutor(new CommandHeal());
         instance.getCommand("feed").setExecutor(new CommandFeed());
@@ -33,11 +33,11 @@ public class ModuleBase extends AbstractModule {
         instance.getCommand("extinguish").setExecutor(new CommandExtinguish());
         instance.getCommand("nebula").setExecutor(new CommandNebula());
         instance.getCommand("teleport").setExecutor(new CommandTeleport());
-        instance.getCommand("broadcast").setExecutor(new CommandBroadcast());
+        instance.getCommand("broadcast").setExecutor(new NebulaCommandBroadcast());
         instance.getCommand("ping").setExecutor(new CommandPing());
-        instance.getCommand("trash").setExecutor(new CommandTrash());
-        instance.getCommand("clearchat").setExecutor(new CommandClearChat());
-        instance.getCommand("help").setExecutor(new CommandHelp());
+        instance.getCommand("trash").setExecutor(new NebulaCommandTrash());
+        instance.getCommand("clearchat").setExecutor(new NebulaCommandClearChat());
+        instance.getCommand("help").setExecutor(new NebulaCommandHelp());
 
     }
 

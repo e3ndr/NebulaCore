@@ -11,8 +11,8 @@ public class ModuleSpawn extends AbstractModule {
 
     @Override
     protected void init(NebulaCore instance) {
-        instance.getCommand("spawn").setExecutor(new CommandSpawn());
-        instance.getCommand("setspawn").setExecutor(new CommandSetSpawn());
+        instance.getCommand("spawn").setExecutor(new NebulaCommandSpawn());
+        instance.getCommand("setspawn").setExecutor(new NebulaCommandSetSpawn());
 
     }
 

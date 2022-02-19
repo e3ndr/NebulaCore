@@ -1,17 +1,20 @@
 package xyz.e3ndr.nebulacore.modules.chatcolor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Consumer;
 
+import xyz.e3ndr.consolidate.CommandEvent;
+import xyz.e3ndr.consolidate.command.Command;
+import xyz.e3ndr.consolidate.exception.CommandPermissionException;
 import xyz.e3ndr.nebulacore.NebulaCore;
 import xyz.e3ndr.nebulacore.api.ChatColorConfiguration;
 import xyz.e3ndr.nebulacore.api.NebulaPlayer;
@@ -19,34 +22,43 @@ import xyz.e3ndr.nebulacore.api.Util;
 import xyz.e3ndr.nebulacore.gui.GUIItem;
 import xyz.e3ndr.nebulacore.gui.GUIItemStack;
 import xyz.e3ndr.nebulacore.gui.GUIWindow;
-import xyz.e3ndr.nebulacore.modules.BaseCommand;
+import xyz.e3ndr.nebulacore.modules.NebulaCommand;
 import xyz.e3ndr.nebulacore.xseries.XMaterial;
 
-public class CommandChatColor extends BaseCommand {
+public class NebulaCommandChatColor extends NebulaCommand {
 
-    @Override
-    public void onCommand(CommandSender executor, String alias, String[] args, boolean isConsole) {
-        if (isConsole) {
-            executor.sendMessage("Only players can execute this command.");
-        } else if (executor.hasPermission("Nebula.chatcolor")) {
-            if (args.length == 0) {
-                NebulaPlayer player = NebulaPlayer.getPlayer((Player) executor);
-
-                this.openGUI(player, player.getBukkit());
-            } else if (executor.hasPermission("Nebula.chatcolor.others")) {
-                NebulaPlayer player = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(args[0]));
-
-                if (player == null) {
-                    executor.sendMessage(NebulaCore.getLang("error.never.played"));
-                } else {
-                    this.openGUI(player, (Player) executor);
-                }
-            } else {
-                executor.sendMessage(NebulaCore.getLang("error.perm").replace("%perm%", "Nebula.chatcolor.others"));
-            }
-        } else {
-            executor.sendMessage(NebulaCore.getLang("error.perm").replace("%perm%", "Nebula.chatcolor"));
+    @Command(name = "chatcolor", permission = "Nebula.chatcolor")
+    public void onCommand(CommandEvent<CommandSender> event) throws CommandPermissionException {
+        if (event.getExecutor() instanceof ConsoleCommandSender) {
+            event.getExecutor().sendMessage("Only players can execute this command.");
+            return;
         }
+
+        NebulaPlayer player = NebulaPlayer.getPlayer((Player) event.getExecutor());
+
+        if (event.getArgs().isEmpty()) {
+            this.openGUI(player, player.getBukkit());
+        } else {
+            this.checkPermission(event, "Nebula.smite.others");
+
+            NebulaPlayer target = NebulaPlayer.getOfflinePlayer(Util.getOfflineUUID(event.getArgs().get(0)));
+
+            if (target == null) {
+                event.getExecutor().sendMessage(NebulaCore.getLang("error.never.played"));
+                return;
+            }
+
+            this.openGUI(target, player.getBukkit());
+        }
+    }
+
+    @Command(name = "chatcolor", permission = "Nebula.chatcolor.others", minimumArguments = 1, owner = "complete")
+    public List<String> onComplete(CommandEvent<CommandSender> event) {
+        if (event.getArgs().size() == 1) {
+            return Util.getPlayerNames();
+        }
+
+        return null;
     }
 
     private void openGUI(NebulaPlayer player, Player viewer) {
@@ -141,17 +153,6 @@ public class CommandChatColor extends BaseCommand {
         window.setItem(4, 2, italic);
 
         window.show(viewer);
-    }
-
-    @Override
-    public List<String> onTabComplete(CommandSender executor, String alias, String[] args, boolean isConsole) {
-        List<String> ret = new ArrayList<>();
-
-        if ((args.length == 1) && executor.hasPermission("Nebula.chatcolor.others")) {
-            ret.addAll(Util.getPlayerNames());
-        }
-
-        return ret;
     }
 
 }

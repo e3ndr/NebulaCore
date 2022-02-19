@@ -94,8 +94,8 @@ warp-page: | # warps. Use | to enable multline text or use \n. This does not use
 
 broadcast: | # message. Use | to enable multline text or use \n. This does not use the global prefix.
   &d&m--------&r&4BROADCAST&d&m--------&r
-  %player_username% > %message%
-  &r&d&m---------------------
+  %message%
+  &r&d&m---------------------\n
 
 general-prefix-bad: "&c"
 general-prefix-good: "&a"

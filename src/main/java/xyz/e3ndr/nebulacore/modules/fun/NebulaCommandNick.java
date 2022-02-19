@@ -44,17 +44,24 @@ public class NebulaCommandNick extends NebulaCommand {
 
     @Command(name = "resetnick", permission = "Nebula.nick")
     public void onCommand_resetnick(CommandEvent<CommandSender> event) {
-        if (event.getExecutor() instanceof ConsoleCommandSender) {
-            event.getExecutor().sendMessage("Only players can execute this command.");
-            return;
+        NebulaPlayer target;
+
+        if (event.getArgs().isEmpty() || (event.getArgs().get(0).equalsIgnoreCase("off") || event.getArgs().get(0).equalsIgnoreCase("reset"))) {
+            if (event.getExecutor() instanceof ConsoleCommandSender) {
+                event.getExecutor().sendMessage("Only players can execute this command.");
+                return;
+            }
+
+            target = NebulaPlayer.getPlayer((Player) event.getExecutor());
+        } else {
+            this.checkPermission(event, "Nebula.nick.others");
+            target = event.resolve(0, NebulaPlayer.class);
         }
 
-        NebulaPlayer nPlayer = NebulaPlayer.getPlayer((Player) event.getExecutor());
-
-        nPlayer.setNick(null);
-        nPlayer.getBukkit().setDisplayName(null);
-        nPlayer.getBukkit().setPlayerListName(null);
-        nPlayer.getBukkit().sendMessage(NebulaCore.getLang("nick.removed", nPlayer.getUuid()));
+        target.setNick(null);
+        target.getBukkit().setDisplayName(null);
+        target.getBukkit().setPlayerListName(null);
+        target.getBukkit().sendMessage(NebulaCore.getLang("nick.removed", target.getUuid()));
     }
 
 }
