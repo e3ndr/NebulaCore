@@ -219,7 +219,9 @@ public abstract class NebulaPlayer {
             String username = ChatColor.stripColor(player.getName()).replace(" ", "^");
             String displayname = ChatColor.stripColor(player.getDisplayName()).replace(" ", "^");
 
-            if (username.equalsIgnoreCase(name) || displayname.equalsIgnoreCase(name)) return NebulaPlayer.getPlayer(player);
+            if (username.equalsIgnoreCase(name) || displayname.equalsIgnoreCase(name) || player.getUniqueId().toString().equalsIgnoreCase(name)) {
+                return NebulaPlayer.getPlayer(player);
+            }
         }
 
         return null;
