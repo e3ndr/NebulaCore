@@ -11,9 +11,9 @@ public class ModuleFun extends AbstractModule {
 
     @Override
     protected void init(NebulaCore instance) {
-        instance.getCommand("nick").setExecutor(new CommandNick());
-        instance.getCommand("smite").setExecutor(new CommandSmite());
-        instance.getCommand("hat").setExecutor(new CommandHat());
+        instance.getCommand("nick").setExecutor(new NebulaCommandNick());
+        instance.getCommand("smite").setExecutor(new NebulaCommandSmite());
+        instance.getCommand("hat").setExecutor(new NebulaCommandHat());
 
     }
 
