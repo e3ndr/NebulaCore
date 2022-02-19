@@ -134,7 +134,7 @@ public abstract class NebulaPlayer {
             } else {
                 this.lastReceived = sender;
                 this.sendMessage(NebulaLang.getLang("message.receive", sender.uuid, false).replace("%message%", message));
-                sender.sendMessage(NebulaLang.getLang("message.send", sender.uuid, false).replace("%message%", message));
+                sender.sendMessage(NebulaLang.getLang("message.send", this.uuid, false).replace("%message%", message));
                 return 0;
             }
         } else {
