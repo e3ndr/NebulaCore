@@ -1,7 +1,6 @@
 package xyz.e3ndr.nebulacore.modules;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import org.bukkit.Bukkit;
@@ -26,6 +25,9 @@ public class ModuleCombat extends AbstractModule implements Listener {
 
     private static Constructor<?> PacketPlayOutSetCooldown_constructor;
     private static Class<?> CraftItemStack;
+    private static Class<?> Packet;
+
+    private static boolean usePackets = false;
 
     private static final double DEFAULT_ATTACK_SPEED = 4;
     private static final double OLD_ATTACK_SPEED = 32;
@@ -38,8 +40,14 @@ public class ModuleCombat extends AbstractModule implements Listener {
             PacketPlayOutSetCooldown_constructor = PacketPlayOutSetCooldown.getConstructor(Item_class, int.class);
 
             CraftItemStack = Class.forName("org.bukkit.craftbukkit." + version + ".inventory.CraftItemStack");
+            Packet = Class.forName("net.minecraft.server." + version + ".Packet");
+
+            usePackets = true;
         } catch (Exception e) {
-            e.printStackTrace();
+            // We can't use this logic in 1.17+, so we don't.
+            // Plus, it seems that the attribute was fixed at some point.
+            usePackets = false;
+//            e.printStackTrace();
         }
     }
 
@@ -74,53 +82,25 @@ public class ModuleCombat extends AbstractModule implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onAnimation(PlayerAnimationEvent event) {
-        if (event.getAnimationType() == PlayerAnimationType.ARM_SWING) {
+        if (usePackets && (event.getAnimationType() == PlayerAnimationType.ARM_SWING)) {
             try {
                 Player player = event.getPlayer();
                 ItemStack itemstack = event.getPlayer().getItemInHand();
 
                 Object handle = ReflectionLib.invokeMethod(player, "getHandle");
-                Object playerConnection = findField_playerConnection(handle.getClass()).get(handle);
+                Object playerConnection = ReflectionLib.getValue(handle, "playerConnection");
 
-                Object nmsItemstack = ReflectionLib.invokeStaticMethod(CraftItemStack, "asNMSCopy", itemstack);
+                Method asNMSCopy = CraftItemStack.getMethod("asNMSCopy", ItemStack.class);
+                Object nmsItemstack = asNMSCopy.invoke(null, itemstack);
                 Object item = ReflectionLib.invokeMethod(nmsItemstack, "getItem");
 
                 Object packet = PacketPlayOutSetCooldown_constructor.newInstance(item, 0);
 
-                findMethod_sendPacket(playerConnection.getClass()).invoke(playerConnection, packet);
+                Method sendPacket = playerConnection.getClass().getMethod("sendPacket", Packet);
+                sendPacket.invoke(playerConnection, packet);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private static Field findField_playerConnection(Class<?> clazz) {
-        if (clazz == null) {
-            throw new IllegalArgumentException("Cannot find field playerConnection.");
-        } else {
-            for (Field f : clazz.getDeclaredFields()) {
-                if (f.getType().getCanonicalName().contains("PlayerConnection")) {
-                    return f;
-                }
-            }
-
-            return findField_playerConnection(clazz.getSuperclass());
-        }
-    }
-
-    private static Method findMethod_sendPacket(Class<?> clazz) {
-        if (clazz == null) {
-            throw new IllegalArgumentException("Cannot find method sendPacket()");
-        } else {
-            for (Method m : clazz.getDeclaredMethods()) {
-                Class<?>[] params = m.getParameterTypes();
-
-                if ((params.length == 1) && params[0].getCanonicalName().contains("Packet")) {
-                    return m;
-                }
-            }
-
-            return findMethod_sendPacket(clazz.getSuperclass());
         }
     }
 
