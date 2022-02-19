@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import lombok.Getter;
 import lombok.Setter;
+import xyz.e3ndr.NebulaCore.xseries.XMaterial;
 
 public class ChatColorConfiguration {
     private static final Map<XMaterial, ChatColor> COLORS = new HashMap<>();

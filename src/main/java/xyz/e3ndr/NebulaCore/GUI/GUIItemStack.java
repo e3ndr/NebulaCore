@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import xyz.e3ndr.NebulaCore.api.XMaterial;
+import xyz.e3ndr.NebulaCore.xseries.XMaterial;
 
 public class GUIItemStack extends ItemStack {
 

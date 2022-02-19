@@ -16,11 +16,11 @@ import xyz.e3ndr.NebulaCore.NebulaCore;
 import xyz.e3ndr.NebulaCore.api.ChatColorConfiguration;
 import xyz.e3ndr.NebulaCore.api.NebulaPlayer;
 import xyz.e3ndr.NebulaCore.api.Util;
-import xyz.e3ndr.NebulaCore.api.XMaterial;
 import xyz.e3ndr.NebulaCore.gui.GUIItem;
 import xyz.e3ndr.NebulaCore.gui.GUIItemStack;
 import xyz.e3ndr.NebulaCore.gui.GUIWindow;
 import xyz.e3ndr.NebulaCore.modules.BaseCommand;
+import xyz.e3ndr.NebulaCore.xseries.XMaterial;
 
 public class CommandChatColor extends BaseCommand {
 
