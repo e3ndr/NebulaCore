@@ -140,7 +140,7 @@ public class PlayerImpl extends NebulaPlayer {
 
                 json.put("name", home.getKey());
                 json.put("world", loc.getWorld().getName());
-                json.put("x", loc.getZ());
+                json.put("x", loc.getX());
                 json.put("y", loc.getY());
                 json.put("z", loc.getZ());
                 json.put("pitch", loc.getPitch());
