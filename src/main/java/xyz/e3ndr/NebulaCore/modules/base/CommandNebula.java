@@ -9,10 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.json.simple.JSONObject;
 
-import de.tr7zw.changeme.nbtapi.NBTItem;
 import xyz.e3ndr.NebulaCore.NebulaCore;
 import xyz.e3ndr.NebulaCore.PlayerImpl;
 import xyz.e3ndr.NebulaCore.api.Callback;
@@ -38,20 +35,6 @@ public class CommandNebula extends BaseCommand {
                     executor.sendMessage(NebulaCore.getLang("error.specify.argument"));
                 } else {
                     executor.sendMessage(NebulaCore.getLang(Util.stringify(args, 1), isConsole ? null : (Player) executor));
-                }
-            } else if (!isConsole && args[0].equalsIgnoreCase("item") && executor.hasPermission("Nebula.nebula.item")) {
-                @SuppressWarnings("deprecation")
-                ItemStack is = ((Player) executor).getItemInHand();
-
-                if (is != null) {
-                    JSONObject json = new JSONObject();
-                    NBTItem nbt = new NBTItem(is);
-
-                    json.put("material", is.getType().toString());
-                    json.put("amount", is.getAmount());
-                    json.put("nbt", nbt.asNBTString());
-
-                    executor.sendMessage(json.toJSONString());
                 }
             } else if (args[0].equalsIgnoreCase("generate") && executor.hasPermission("Nebula.nebula.generate")) {
                 if (args.length == 1) {
