@@ -14,7 +14,9 @@ import xyz.e3ndr.nebulacore.modules.NebulaCommand;
 
 public class NebulaCommandRealname extends NebulaCommand {
 
-    @Command(name = "realname", permission = "Nebula.realname", minimumArguments = 1)
+    @Command(name = "realname", permission = "Nebula.realname", minimumArguments = 1, aliases = {
+            "username"
+    })
     public void onCommand(CommandEvent<CommandSender> event) throws CommandPermissionException {
         NebulaPlayer player = event.resolve(0, NebulaPlayer.class);
 
@@ -26,7 +28,9 @@ public class NebulaCommandRealname extends NebulaCommand {
             );
     }
 
-    @Command(name = "realname", permission = "Nebula.realname", minimumArguments = 1, owner = "complete")
+    @Command(name = "realname", permission = "Nebula.realname", minimumArguments = 1, owner = "complete", aliases = {
+            "username"
+    })
     public List<String> onComplete(CommandEvent<CommandSender> event) {
         if (event.getArgs().size() > 1) {
             return Util.getPlayerNames();

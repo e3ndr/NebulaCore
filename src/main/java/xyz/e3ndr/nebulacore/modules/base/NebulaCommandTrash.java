@@ -12,7 +12,12 @@ import xyz.e3ndr.nebulacore.modules.NebulaCommand;
 
 public class NebulaCommandTrash extends NebulaCommand {
 
-    @Command(name = "trash", permission = "Nebula.trash")
+    @Command(name = "trash", permission = "Nebula.trash", aliases = {
+            "trashcan",
+            "disposal",
+            "dispose",
+            "void"
+    })
     public void onCommand(CommandEvent<CommandSender> event) throws CommandPermissionException {
         if (event.getExecutor() instanceof ConsoleCommandSender) {
             event.getExecutor().sendMessage("Only players can execute this command.");

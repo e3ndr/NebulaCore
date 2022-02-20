@@ -24,8 +24,8 @@ public class ModuleBase extends AbstractModule {
         instance.getCommand("suicide").setExecutor(new NebulaCommandSuicide());
         instance.getCommand("kill").setExecutor(new NebulaCommandKill());
         instance.getCommand("invsee").setExecutor(new CommandInvsee());
-        instance.getCommand("heal").setExecutor(new CommandHeal());
-        instance.getCommand("feed").setExecutor(new CommandFeed());
+        instance.getCommand("heal").setExecutor(new NebulaCommandHeal());
+        instance.getCommand("feed").setExecutor(new NebulaCommandFeed());
         instance.getCommand("fly").setExecutor(new CommandFly());
         instance.getCommand("gamemode").setExecutor(new CommandGamemode());
         instance.getCommand("message").setExecutor(new CommandMessage());
