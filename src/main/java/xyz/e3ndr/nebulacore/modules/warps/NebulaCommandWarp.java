@@ -149,7 +149,7 @@ public class NebulaCommandWarp extends NebulaCommand {
     }
 
     private static <T> T getOrDefault(List<T> list, int pos, T def) {
-        if (list.size() >= pos) {
+        if (pos >= list.size()) {
             return def;
         } else {
             return list.get(pos);
